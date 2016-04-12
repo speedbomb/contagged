@@ -1,10 +1,10 @@
 {
-	"name": "jocrau/contagged",
+	"name": "speedbomb/contagged",
 	"type": "typo3-cms-extension",
 	"description": "Content parser and tagger (Glossary)",
-	"homepage": "https://github.com/jocrau/contagged",
+	"homepage": "https://github.com/speedbomb/contagged",
 	"license": ["GPL-2.0+"],
 	"require": {
-		"typo3/cms-core": "6.2.*"
+		"typo3/cms-core": "7.6.*"
 	}
 }

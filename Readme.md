@@ -1,4 +1,4 @@
-contagged
+# contagged
 
 This TYPO3 extension parses your content to tag, replace and link specific terms. It is useful to auto-generate
 a glossary - but not only.
