@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-04-13T22:18:05Z"
+          product-name="contagged">
+        <header/>
+        <body>
+            <trans-unit id="tx_contagged_terms">
+                <source>Terms</source>
+            </trans-unit>
+            <trans-unit id="tx_contagged_terms.plugin">
+                <source>Contagged (glossary)</source>
+            </trans-unit>
+            <trans-unit id="tx_contagged_terms.term_main">
+                <source>Term name</source>
+            </trans-unit>
+            <trans-unit id="contagged.wizard_title">
+                <source>Contagged (glossary)</source>
+            </trans-unit>
+            <trans-unit id="contagged.wizard_description">
+                <source>Lists the glossary terms or shows their details.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -3,5 +3,19 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPItoST43($_EXTKEY, 'pi1/class.tx_contagged_pi1.php', '_pi1', 'list_type', 1);
-?>
+// PlugIn
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'Speedbomb.' . $_EXTKEY,
+	'Glossary',
+    // cacheable actions
+	array(
+		'Term' => 'list,detail'
+	),
+	// non-cacheable actions
+	array(
+		'Term' => ''
+	)
+);
+
+// Hook
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tslib/class.tslib_fe.php']['contentPostProc-all'][] = \Speedbomb\Contagged\Service\ParserService::class . '->pageParser';

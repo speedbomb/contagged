@@ -1,0 +1,10 @@
+config.tx_extbase.persistence.classes {
+	Speedbomb\Contagged\Domain\Model\Term {
+		mapping {
+			tableName = tx_contagged_terms
+            columns {
+                term_main.mapOnProperty = termMain
+            }
+		}
+	}
+}

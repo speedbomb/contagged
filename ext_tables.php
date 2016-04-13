@@ -3,26 +3,34 @@ if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
+// PlugIn
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'Glossary',
+	'Contagged Glossary'
+);
+
+// PlugIn Wizard Icon in BE
+if(TYPO3_MODE == 'BE') {
+    $GLOBALS['TBE_MODULES_EXT']['xMOD_db_new_content_el']['addElClasses']['contaggedGlossaryWizicon'] = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Resources/Private/Php/class.contaggedGlossaryWizicon.php';
+}
+
+// TypoScript Config
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Contagged Glossary');
+
+// Terms table definition
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_contagged_terms');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_contagged_terms');
-
-// add contagged to the "insert plugin" content element
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(array('LLL:EXT:contagged/locallang_db.php:tx_contagged_terms.plugin', $_EXTKEY . '_pi1'), 'list_type');
-
-// initialize static extension templates
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'static/', 'Content parser');
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'static/examples/', 'Experimental Setup');
-
 $TCA["tx_contagged_terms"] = array(
 	"ctrl" => array(
-		'title' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms',
+        'title'	=> 'LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:tx_contagged_terms',
 		'label' => 'term_replace',
 		'label_alt' => 'term_main, term_alt',
-		'label_alt_force' => TRUE,
+		'label_alt_force' => true,
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
-		'versioningWS' => TRUE,
+		'versioningWS' => 2,
 		'origUid' => 't3_origuid',
 		'languageField' => 'sys_language_uid',
 		'transOrigPointerField' => 'l18n_parent',
@@ -36,8 +44,8 @@ $TCA["tx_contagged_terms"] = array(
 			'fe_group' => 'fe_group',
 		),
 		'useColumnsForDefaultValues' => 'term_type',
-		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'tca.php',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'icon_tx_contagged_terms.gif',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Term.php',
+		'iconfile' => 'EXT:contagged/Resources/Public/Icons/Term.gif',
 	),
 	"feInterface" => array(
 		"fe_admin_fieldList" => "sys_language_uid, l18n_parent, l18n_diffsource, hidden, starttime, endtime, fe_group, term_main, term_alt, term_type, term_lang, term_replace, desc_short, desc_long, image, dam_images, imagecaption, imagealt, imagetitle, related, link, exclude",
