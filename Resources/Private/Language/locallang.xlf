@@ -11,7 +11,7 @@
                 <source>Contagged (glossary)</source>
             </trans-unit>
             <trans-unit id="tx_contagged_terms.term_main">
-                <source>Term name</source>
+                <source>Term</source>
             </trans-unit>
             <trans-unit id="contagged.wizard_title">
                 <source>Contagged (glossary)</source>

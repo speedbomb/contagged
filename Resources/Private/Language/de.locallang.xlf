@@ -10,7 +10,7 @@
                 <target>Contagged (Glossar)</target>
             </trans-unit>
 			<trans-unit id="tx_contagged_terms.term_main">
-				<target>Name des Terms</target>
+				<target>Ausdruck</target>
 			</trans-unit>
 			<trans-unit id="contagged.wizard_title">
 				<target>Contagged (Glossar)</target>

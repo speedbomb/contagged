@@ -1,98 +1,113 @@
-contagged {	
-	# cat=contagged (base settings)/file/10; type=string; label=Template File: Path and name of your custom template file.
-	templateFile = EXT:contagged/pi1/contagged.tmpl
-	# cat=contagged (base settings)//20; type=string; label=Root Pages to be included: A comma separated list of root pages of branches to be parsed. This could be overwritten by the type configuration.
-	includeRootPages = 
-	# cat=contagged (base settings)//30; type=string; label=Root Pages to be excluded: A comma separated list of root pages of branches to be excluded from parsing. Overwrites the settings of "includeRootPages".
-	excludeRootPages =
-	# cat=contagged (base settings)//40; type=string; label=Pages to be included: A comma separated list of pages to be included. Overwrites the settings of "excludeRootPages".
-	includePages =
-	# cat=contagged (base settings)//50; type=string; label=Pages to be excluded: A comma separated list of pages to be excluded from parsing. Overwrites the settings of "includePages" and "includeRootPages".
-	excludePages =
-	# cat=contagged (base settings)//60; type=int; label=Storage PIDs: A comma separated list of pages or sysFolders (PIDs) the data is stored. This could be overwritten by the type configuration or the data source configuration.
-	storagePids = 
-	# cat=contagged (base settings)//70; type=int; label=Default List Page (PID): PID of the default list page if no special list page in the configuration of a type of term is selected. This could be overwritten by the type configuration.
-	listPages = 
-	# cat=contagged (base settings)//80; type=int; label=Link to list page: Set this to 1 if all types of terms shold be linked to the list page specified by "listPage". This could be overwritten by the type configuration. you have to configure a list page globally (see below) or in the configuration of a type of term.
-	linkToListPage = 1
-	# cat=contagged (parser)//30; type=string; label=Tags to be excluded: A comma separated list of tags to be excluded from parsing.
-	excludeTags = h1,h2,h3,h4,h5,h6,a,dfn,abbr,acronym
-	# cat=contagged (parser)//35; type=boolean; label=Exclude used tags: Auto-exclude tags used by the contagged type definitions (like <dfn> or <abbr>).
-	autoExcludeTags = 0
-	# cat=contagged (parser)//48; type=int; label=Max. Recurrences: The maximum number of terms to be tagged in a cObject.
-	maxRecurrences = 99999
-	# cat=contagged (parser)//49; type=int; label=Max. Recurrences per Page: The maximum number of terms to be tagged on a page.
-	maxRecurrencesPerPage = 99999
-	# cat=contagged (parser)/enable/50; type=boolean; label=Check for joined words: Take pre- and/or post-matches of joined words (with dash) into account (see documentation for examples).
-	checkPreAndPostMatches = 1
-	# cat=contagged (parser)/enable/52; type=boolean; label=Respect case: Respect the case of the first letter. Contagged tries to determine the case of the first letter and sets the replacement to this case if enabled.
-	respectCase = 1
-	# cat=contagged (parser)/enable/55; type=boolean; label=Add title attribute: Should the "title" attribute containing a short description of the term be added to the tag?
-	addTitleAttribute = 1
-	# cat=contagged (parser)/enable/60; type=boolean; label=Add language attribute: Should a "lang" attribute be added to the tag?
-	addLangAttribute = 1
-	# cat=contagged (parser)/enable/65; type=boolean; label=Add css class: Should a css class name be added to the tag? By default the class name is the name of the type of term (e.g. "dfn_inline") headed by the extension prefix.
-	addCssClassAttribute = 0
-	# cat=contagged (parser)/enable/70; type=boolean; label=Replace term: Should the term be replaced by the specified replacement? This could be overwritten by the type configuration.
-	replaceTerm = 1
-	# cat=contagged (parser)/enable/75; type=boolean; label=Update page keywords: Should the matched terms be used as keywords for the page they are on. If there is a replaced term it will be used as keyword. If no the main term will be the keyword. The list of matched terms will be stored in a separate database field (not in the field 'keywords'), so your own keywords are preserved.
-	updateKeywords = 1
-	# cat=contagged (parser)//90; type=string; label=RegEx modifier: RegEx modifier of the main RegEx. You have to add "u" if you have a site with UTF-8 encoding.
-	modifier = Uis
-	# cat=contagged (list)/dims/10; type=int; label=Image max width: Maximum width of an image in single view.
-	singleMaxW = 200
-	# cat=contagged (list)/dims/11; type=int; label=Image max height: Maximum height of an image in single view.
-	singleMaxH = 200
-	# cat=contagged (list)//20; type=wrap; label=Label Wrap 1
-	labelWrap1 = <strong>|:</strong>&nbsp;
-	# cat=contagged (list)//21; type=wrap; label=Label Wrap 2
-	labelWrap2 = &nbsp;(|)
-	# cat=contagged (list)//30; type=boolean; label=Show search box
-	enableSearchBox = 1
-	# cat=contagged (list)//32; type=string; label=Fields to be searched
-	fieldsToSearch = term_main,term_alt,term_replace,desc_short,desc_long,imagecaption
-	# cat=contagged (list)//34; type=string; label=Sort Field: The front-end lists will be sorted by this field.
-	sortField = term
-	# cat=contagged (list)//38; type=string; label=Fields to be parsed: Fields to be parsed by contagged again before they are outputted in the list view.
-	fieldsToParse = 
-	# cat=contagged (list)//39; type=boolean; label=Auto-exclude Terms: Set this to avoid parsed terms linking to themselves in a single view.
-	autoExcludeTerms = 1
-	# cat=contagged (list)//39; type=boolean; label=Fetch related terms: If you don't use related terms, you can set this to 0 and gain a little bit of performance.
-	fetchRelatedTerms = 1
-	# cat=contagged (list)//40; type=string; label=Fields to Map: Fields to be mapped.
-	fieldsToMap = uid,pid,term_main,term_alt,term_type,term_lang,term_replace,desc_short,desc_long,image,imagecaption,imagealt,imagetitle,related,link,exclude
-	# cat=contagged (list)//50; type=boolean; label=Add Back Link: Add a back link to the refering page. Be aware of caching if you activate this!
-	addBackLink = 0
-	# cat=contagged (list)//51; type=boolean; label=Add Back Link Desc.: Add the page title to the back link.
-	addBackLinkDescription = 1
-	# cat=contagged (list)//60; type=boolean; label=Show index: Show the alphabetical index.
-	enableIndex = 1
-	# cat=contagged (list)//62; type=boolean; label=Only matched Index: Show only those index chars, for which a term matches.
-	showOnlyMatchedIndexChars = 0
-	# cat=contagged (list)//64; type=boolean; label=Add index chars: Supplement missing index chars automatically.
-	autoAddIndexChars = 1
-	# cat=contagged (list)//70; type=boolean; label=Show page browser:
-	enablePageBrowser = 1
-	# cat=contagged (list)//71; type=int; label=Results at a time: Number of results to be displayed on a single page.
-	results_at_a_time = 20
-	# cat=contagged (list)//72; type=int; label=Number of pages: Number of pages to be displayed in the page browser at once.
-	maxPages = 3
-	# cat=contagged (list)//73; type=boolean; label=Don't link active page
-	dontLinkActivePage = 1
-	# cat=contagged (list)//74; type=string; label=Page position in the list of pages: This defines were the current page is shown in the list of pages in the Pagebrowser. If this var is an integer it will be interpreted as position in the list of pages. If its value is the keyword "center" the current page will be shown in the middle of the pagelist. As the current implementation of pi_pagebrowser is buggy keep it set to "center".
-	pagefloat = center
-	# cat=contagged (list)//75; type=boolean; label=Show "First"/"Last": Show link to first and last page.
-	showFirstLast = 0
-	# cat=contagged (list)//76; type=boolean; label=Show always link to previous.
-	alwaysPrev = 1
-	# cat=contagged (list)//77; type=int; label=Show result counter: Determines how the results of the pagerowser will be shown. If set to 0: only the result-browser will be shown. 1: (default) the text "Displaying results..." and the result-browser will be shown. 2: only the text "Displaying results..." will be shown.
-	showResultCount = 0
-	# cat=contagged (list)//78; type=boolean; label=Show page links as range (1-5 6-10 11-15... instead of 1 2 3...)
-	showRange = 0
-	# cat=contagged (list)//79; type=string; label=Additional table tag params.
-	tableParams = 
-	# cat=contagged (list)//80; type=string; label=The pointer name.
-	pointerName = pointer
-	# cat=contagged (list)//81; type=boolean; label=Enable htmlspecialchars():Enable htmlspecialchars() for pagebrowser (set this to 0 if you want f.e use images instead of text for links like 'previous' and 'next')
-	enableHtmlspecialchars = 1
+plugin.contagged {
+
+    view {
+		# cat=plugin.tx_contagged/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:contagged/Resources/Private/Templates/
+		# cat=plugin.tx_contagged/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:contagged/Resources/Private/Partials/
+		# cat=plugin.tx_contagged/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:contagged/Resources/Private/Layouts/
+	}
+
+	persistence {
+		# cat=plugin.tx_contagged//a; type=string; label=Default storage PID
+		storagePid =
+	}
+
+	settings {
+        # cat=contagged (base settings)//20; type=string; label=Root Pages to be included: A comma separated list of root pages of branches to be parsed. This could be overwritten by the type configuration.
+        includeRootPages =
+        # cat=contagged (base settings)//30; type=string; label=Root Pages to be excluded: A comma separated list of root pages of branches to be excluded from parsing. Overwrites the settings of "includeRootPages".
+        excludeRootPages =
+        # cat=contagged (base settings)//40; type=string; label=Pages to be included: A comma separated list of pages to be included. Overwrites the settings of "excludeRootPages".
+        includePages =
+        # cat=contagged (base settings)//50; type=string; label=Pages to be excluded: A comma separated list of pages to be excluded from parsing. Overwrites the settings of "includePages" and "includeRootPages".
+        excludePages =
+        # cat=contagged (base settings)//70; type=int; label=Default List Page (PID): PID of the default list page if no special list page in the configuration of a type of term is selected. This could be overwritten by the type configuration.
+        listPages =
+        # cat=contagged (base settings)//80; type=int; label=Link to list page: Set this to 1 if all types of terms shold be linked to the list page specified by "listPage". This could be overwritten by the type configuration. you have to configure a list page globally (see below) or in the configuration of a type of term.
+        linkToListPage = 1
+
+        # cat=contagged (parser)//30; type=string; label=Tags to be excluded: A comma separated list of tags to be excluded from parsing.
+        excludeTags = h1,h2,h3,h4,h5,h6,a,dfn,abbr,acronym
+        # cat=contagged (parser)//35; type=boolean; label=Exclude used tags: Auto-exclude tags used by the contagged type definitions (like <dfn> or <abbr>).
+        autoExcludeTags = 0
+        # cat=contagged (parser)//48; type=int; label=Max. Recurrences: The maximum number of terms to be tagged in a cObject.
+        maxRecurrences = 99999
+        # cat=contagged (parser)//49; type=int; label=Max. Recurrences per Page: The maximum number of terms to be tagged on a page.
+        maxRecurrencesPerPage = 99999
+        # cat=contagged (parser)/enable/50; type=boolean; label=Check for joined words: Take pre- and/or post-matches of joined words (with dash) into account (see documentation for examples).
+        checkPreAndPostMatches = 1
+        # cat=contagged (parser)/enable/52; type=boolean; label=Respect case: Respect the case of the first letter. Contagged tries to determine the case of the first letter and sets the replacement to this case if enabled.
+        respectCase = 1
+        # cat=contagged (parser)/enable/55; type=boolean; label=Add title attribute: Should the "title" attribute containing a short description of the term be added to the tag?
+        addTitleAttribute = 1
+        # cat=contagged (parser)/enable/60; type=boolean; label=Add language attribute: Should a "lang" attribute be added to the tag?
+        addLangAttribute = 1
+        # cat=contagged (parser)/enable/65; type=boolean; label=Add css class: Should a css class name be added to the tag? By default the class name is the name of the type of term (e.g. "dfn_inline") headed by the extension prefix.
+        addCssClassAttribute = 0
+        # cat=contagged (parser)/enable/70; type=boolean; label=Replace term: Should the term be replaced by the specified replacement? This could be overwritten by the type configuration.
+        replaceTerm = 1
+        # cat=contagged (parser)/enable/75; type=boolean; label=Update page keywords: Should the matched terms be used as keywords for the page they are on. If there is a replaced term it will be used as keyword. If no the main term will be the keyword. The list of matched terms will be stored in a separate database field (not in the field 'keywords'), so your own keywords are preserved.
+        updateKeywords = 1
+        # cat=contagged (parser)//90; type=string; label=RegEx modifier: RegEx modifier of the main RegEx. You have to add "u" if you have a site with UTF-8 encoding.
+        modifier = Uis
+
+        # cat=contagged (list)/dims/10; type=int; label=Image max width: Maximum width of an image in single view.
+        singleMaxW = 200
+        # cat=contagged (list)/dims/11; type=int; label=Image max height: Maximum height of an image in single view.
+        singleMaxH = 200
+        # cat=contagged (list)//20; type=wrap; label=Label Wrap 1
+        labelWrap1 = <strong>|:</strong>&nbsp;
+        # cat=contagged (list)//21; type=wrap; label=Label Wrap 2
+        labelWrap2 = &nbsp;(|)
+        # cat=contagged (list)//30; type=boolean; label=Show search box
+        enableSearchBox = 1
+        # cat=contagged (list)//32; type=string; label=Fields to be searched
+        fieldsToSearch = term_main,term_alt,term_replace,desc_short,desc_long,imagecaption
+        # cat=contagged (list)//34; type=string; label=Sort Field: The front-end lists will be sorted by this field.
+        sortField = term
+        # cat=contagged (list)//38; type=string; label=Fields to be parsed: Fields to be parsed by contagged again before they are outputted in the list view.
+        fieldsToParse =
+        # cat=contagged (list)//39; type=boolean; label=Auto-exclude Terms: Set this to avoid parsed terms linking to themselves in a single view.
+        autoExcludeTerms = 1
+        # cat=contagged (list)//39; type=boolean; label=Fetch related terms: If you don't use related terms, you can set this to 0 and gain a little bit of performance.
+        fetchRelatedTerms = 1
+        # cat=contagged (list)//40; type=string; label=Fields to Map: Fields to be mapped.
+        fieldsToMap = uid,pid,term_main,term_alt,term_type,term_lang,term_replace,desc_short,desc_long,image,imagecaption,imagealt,imagetitle,related,link,exclude
+        # cat=contagged (list)//50; type=boolean; label=Add Back Link: Add a back link to the refering page. Be aware of caching if you activate this!
+        addBackLink = 0
+        # cat=contagged (list)//51; type=boolean; label=Add Back Link Desc.: Add the page title to the back link.
+        addBackLinkDescription = 1
+        # cat=contagged (list)//60; type=boolean; label=Show index: Show the alphabetical index.
+        enableIndex = 1
+        # cat=contagged (list)//62; type=boolean; label=Only matched Index: Show only those index chars, for which a term matches.
+        showOnlyMatchedIndexChars = 0
+        # cat=contagged (list)//64; type=boolean; label=Add index chars: Supplement missing index chars automatically.
+        autoAddIndexChars = 1
+        # cat=contagged (list)//70; type=boolean; label=Show page browser:
+        enablePageBrowser = 1
+        # cat=contagged (list)//71; type=int; label=Results at a time: Number of results to be displayed on a single page.
+        results_at_a_time = 20
+        # cat=contagged (list)//72; type=int; label=Number of pages: Number of pages to be displayed in the page browser at once.
+        maxPages = 3
+        # cat=contagged (list)//73; type=boolean; label=Don't link active page
+        dontLinkActivePage = 1
+        # cat=contagged (list)//74; type=string; label=Page position in the list of pages: This defines were the current page is shown in the list of pages in the Pagebrowser. If this var is an integer it will be interpreted as position in the list of pages. If its value is the keyword "center" the current page will be shown in the middle of the pagelist. As the current implementation of pi_pagebrowser is buggy keep it set to "center".
+        pagefloat = center
+        # cat=contagged (list)//75; type=boolean; label=Show "First"/"Last": Show link to first and last page.
+        showFirstLast = 0
+        # cat=contagged (list)//76; type=boolean; label=Show always link to previous.
+        alwaysPrev = 1
+        # cat=contagged (list)//77; type=int; label=Show result counter: Determines how the results of the pagerowser will be shown. If set to 0: only the result-browser will be shown. 1: (default) the text "Displaying results..." and the result-browser will be shown. 2: only the text "Displaying results..." will be shown.
+        showResultCount = 0
+        # cat=contagged (list)//78; type=boolean; label=Show page links as range (1-5 6-10 11-15... instead of 1 2 3...)
+        showRange = 0
+        # cat=contagged (list)//79; type=string; label=Additional table tag params.
+        tableParams =
+        # cat=contagged (list)//80; type=string; label=The pointer name.
+        pointerName = pointer
+        # cat=contagged (list)//81; type=boolean; label=Enable htmlspecialchars():Enable htmlspecialchars() for pagebrowser (set this to 0 if you want f.e use images instead of text for links like 'previous' and 'next')
+        enableHtmlspecialchars = 1
+    }
 }

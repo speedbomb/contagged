@@ -25,6 +25,7 @@ namespace Speedbomb\Contagged\Service;
  ***************************************************************/
 
 use Speedbomb\Contagged\Domain\Model\Term;
+use Speedbomb\Contagged\Domain\Repository\TermRepository;
 
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -91,11 +92,11 @@ class ParserService implements SingletonInterface {
 		$querySettings = $objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface');
 		// Get termRepository
 		/** @var TermRepository $termRepository */
-		$termRepository = $objectManager->get('Dpn\DpnGlossary\Domain\Repository\TermRepository');
+		$termRepository = $objectManager->get('Speedbomb\Contagged\Domain\Repository\TermRepository');
 		// Get Typoscript Configuration
 		$this->tsConfig = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
 		// Reduce TS config to plugin
-		$this->tsConfig = $this->tsConfig['plugin.']['tx_dpnglossary.'];
+		$this->tsConfig = $this->tsConfig['plugin.']['tx_contagged.'];
 
 		if (NULL !== $this->tsConfig && 0 < count($this->tsConfig)) {
 			// Save extension settings without ts dots
@@ -107,7 +108,7 @@ class ParserService implements SingletonInterface {
 			// Assign query settings object to repository
 			$termRepository->setDefaultQuerySettings($querySettings);
 			//Find all terms
-			$terms = $terms = $termRepository->findByNameLength();
+			$terms = $terms = $termRepository->findByTermMainLength();
 			//Sort terms with an individual counter for max replacement per page
 			/** @var Term $term */
 			foreach ($terms as $term) {
@@ -298,7 +299,7 @@ class ParserService implements SingletonInterface {
 	/**
 	 * Renders the wrapped term using the plugin settings
 	 *
-	 * @param \Dpn\DpnGlossary\Domain\Model\Term
+	 * @param Term $term
 	 * @return string
 	 */
 	protected function termWrapper(Term $term) {

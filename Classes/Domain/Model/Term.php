@@ -24,22 +24,34 @@ namespace Speedbomb\Contagged\Domain\Model;
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
 /**
  * This class represents a term.
  *
  * @author Marco Schrepfer <typo3@speedbomb.de>
  * @package contagged
  */
-class Term extends AbstractEntity {
+class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
     /**
      * (main) name of the term
      *
-     * @var string $name
+     * @var string $termMain
      * @validate NotEmpty
      */
     protected $termMain = '';
+
+    /**
+     * @return string
+     */
+    public function getTermMain() {
+        return $this->termMain;
+    }
+
+    /**
+     * @param string $termMain
+     */
+    public function setTermMain($termMain) {
+        $this->termMain = $termMain;
+    }
 
 }

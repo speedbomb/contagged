@@ -1,7 +1,8 @@
-# include class tx_contagged as library 
-includeLibs.tx_contagged = EXT:contagged/class.tx_contagged.php
+# include class tx_contagged as library
+#includeLibs.tx_contagged = EXT:contagged/class.tx_contagged.php
 
 # invoke the parser
+/*
 lib.stdheader.stdWrap.postUserFunc = tx_contagged->main
 tt_content {
 	text.20.postUserFunc = tx_contagged->main
@@ -11,38 +12,60 @@ tt_content {
 	image.20.caption.1.postUserFunc = tx_contagged->main
 	html.postUserFunc = tx_contagged->main
 }
+*/
 
 plugin.tx_contagged {
-	templateFile = {$contagged.templateFile}
-	linkToListPage = {$contagged.linkToListPage}
-	listPages = {$contagged.listPages}
-	storagePids = {$contagged.storagePids}
-	includeRootPages = {$contagged.includeRootPages}
-	excludeRootPages = {$contagged.excludeRootPages}
-	includePages = {$contagged.includePages}
-	excludePages = {$contagged.excludePages}
-	excludeTags = {$contagged.excludeTags}
-	autoExcludeTags = {$contagged.autoExcludeTags}
-	fetchRelatedTerms = {$contagged.fetchRelatedTerms}
-	checkPreAndPostMatches = {$contagged.checkPreAndPostMatches}
-	respectCase = {$contagged.respectCase}
-	addTitleAttribute = {$contagged.addTitleAttribute}
-	addLangAttribute = {$contagged.addLangAttribute}
-	addCssClassAttribute = {$contagged.addCssClassAttribute}
-	replaceTerm = {$contagged.replaceTerm}
-	maxRecurrences = {$contagged.maxRecurrences}
-	maxRecurrencesPerPage = {$contagged.maxRecurrencesPerPage}
-	updateKeywords = {$contagged.updateKeywords}
-	labelWrap1 = {$contagged.labelWrap1}
-	labelWrap2 = {$contagged.labelWrap2}
-	modifier = {$contagged.modifier}
-	sortField = {$contagged.sortField}
-	fieldsToMap = {$contagged.fieldsToMap}
-	fieldsToParse = {$contagged.fieldsToParse}
-	autoExcludeTerms = {$contagged.autoExcludeTerms}
-	addBackLink = {$contagged.addBackLink}
-	addBackLinkDescription = {$contagged.addBackLinkDescription}
-			
+    view {
+        templateRootPaths {
+            0 = EXT:contagged/Resources/Private/Templates/
+            1 = {$plugin.tx_contagged.view.templateRootPath}
+        }
+
+        partialRootPaths {
+            0 = EXT:contagged/Resources/Private/Partials/
+            1 = {$plugin.tx_contagged.view.partialRootPath}
+        }
+
+        layoutRootPaths {
+            0 = EXT:contagged/Resources/Private/Layouts/
+            1 = {$plugin.tx_contagged.view.layoutRootPath}
+        }
+    }
+
+    persistence {
+        storagePid = {$plugin.tx_contagged.persistence.storagePid}
+    }
+
+    settings {
+        linkToListPage = {$contagged.linkToListPage}
+        listPages = {$contagged.listPages}
+        includeRootPages = {$contagged.includeRootPages}
+        excludeRootPages = {$contagged.excludeRootPages}
+        includePages = {$contagged.includePages}
+        excludePages = {$contagged.excludePages}
+        excludeTags = {$contagged.excludeTags}
+        autoExcludeTags = {$contagged.autoExcludeTags}
+        fetchRelatedTerms = {$contagged.fetchRelatedTerms}
+        checkPreAndPostMatches = {$contagged.checkPreAndPostMatches}
+        respectCase = {$contagged.respectCase}
+        addTitleAttribute = {$contagged.addTitleAttribute}
+        addLangAttribute = {$contagged.addLangAttribute}
+        addCssClassAttribute = {$contagged.addCssClassAttribute}
+        replaceTerm = {$contagged.replaceTerm}
+        maxRecurrences = {$contagged.maxRecurrences}
+        maxRecurrencesPerPage = {$contagged.maxRecurrencesPerPage}
+        updateKeywords = {$contagged.updateKeywords}
+        labelWrap1 = {$contagged.labelWrap1}
+        labelWrap2 = {$contagged.labelWrap2}
+        modifier = {$contagged.modifier}
+        sortField = {$contagged.sortField}
+        fieldsToMap = {$contagged.fieldsToMap}
+        fieldsToParse = {$contagged.fieldsToParse}
+        autoExcludeTerms = {$contagged.autoExcludeTerms}
+        addBackLink = {$contagged.addBackLink}
+        addBackLinkDescription = {$contagged.addBackLinkDescription}
+    }
+
 	images {
 		stdWrap.wrap = <div class="tx-contagged-images">|</div>
 		caption.stdWrap.wrap = <div class="tx-contagged-imagecaption"> | </div>
@@ -64,18 +87,18 @@ plugin.tx_contagged {
 			}
 		}
 	}
-	
+
 	related {
 		stdWrap.wrap = <div class="tx-contagged-related">|</div>
 		single.stdWrap.wrap = <div>|</div>
 	}
-	
+
 	index {
 		enable = {$contagged.enableIndex}
 		showOnlyMatchedIndexChars = {$contagged.showOnlyMatchedIndexChars}
 		autoAddIndexChars = {$contagged.autoAddIndexChars}
 	}
-	
+
 	pagebrowser {
 		enable = {$contagged.enablePageBrowser}
 		results_at_a_time = {$contagged.results_at_a_time}
@@ -99,12 +122,12 @@ plugin.tx_contagged {
 			activeLinkWrap = <span class="activeLinkWrap">|</span>
 		}
 	}
-	
+
 	searchbox {
 		enable = {$contagged.enableSearchBox}
 		fieldsToSearch = {$contagged.fieldsToSearch}
 	}
-	
+
 	multimedia {
 		# see cObj MULTIMEDIA for reference
 		file.wrap = uploads/media/
@@ -112,11 +135,11 @@ plugin.tx_contagged {
 			width = 100
 			height = 16
 			autostart = false
-			controller = true 
+			controller = true
 			loop = false
-		)        
+		)
 	}
-		
+
 	types {
 
 		definition {
@@ -124,7 +147,7 @@ plugin.tx_contagged {
 			label.de = Definition
 			tag = dfn
 		}
-		
+
 		tooltip {
 			label = Definition (tool-tip)
 			label.de = Definition (Tool-Tip)
@@ -156,15 +179,15 @@ plugin.tx_contagged {
 			label.de = Abkürzung (Beispiel: u.s.w.)
 			tag = abbr
 		}
-				
+
 	}
 
 	dataSources {
-		
+
 		default {
 			sourceName = tx_contagged_terms
 			hasSysLanguageUid = 1
-			storagePids = 
+			storagePids =
 			fieldsToEdit = term_main,term_alt,term_type,term_lang,term_replace,desc_short,desc_long,link,exclude
 			mapping {
 				uid.field = uid
@@ -193,14 +216,14 @@ plugin.tx_contagged {
 
 plugin.tx_contagged {
 	_CSS_DEFAULT_STYLE (
-		
+
 		div.tx-contagged-pi1 dt {
 			font-size: 1.2em;
 		}
 		div.tx-contagged-index span {
 			margin: 0;
 		}
-		
+
 		/* position:relative is necessary for correct positioning of inline descriptions */
 		span.tx-contagged-tooltip {
 			position: relative;
@@ -224,6 +247,6 @@ plugin.tx_contagged {
 			border: 1px #CCCCCC solid;
 			padding: 0px 10px 10px 10px;
 		}
-		
+
 	)
 }

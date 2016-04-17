@@ -2,14 +2,15 @@
 if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
+$langFile = 'LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:';
 
-$TCA["tx_contagged_terms"] = array(
-	"ctrl" => $TCA["tx_contagged_terms"]["ctrl"],
-	"interface" => array(
-		"showRecordFieldList" => "sys_language_uid,l18n_parent,l18n_diffsource,hidden,starttime,endtime,fe_group term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude"
+$TCA['tx_contagged_terms'] = array(
+	'ctrl' => $TCA['tx_contagged_terms']['ctrl'],
+	'interface' => array(
+		'showRecordFieldList' => 'sys_language_uid,l18n_parent,l18n_diffsource,hidden,starttime,endtime,fe_group term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude'
 	),
-	"feInterface" => $TCA["tx_contagged_terms"]["feInterface"],
-	"columns" => array(
+	'feInterface' => $TCA['tx_contagged_terms']['feInterface'],
+	'columns' => array(
 		't3ver_label' => array(
 			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
 			'config' => array(
@@ -18,32 +19,38 @@ $TCA["tx_contagged_terms"] = array(
 				'max' => '30',
 			)
 		),
-		'sys_language_uid' => array(
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.language',
-			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => array(
-					array('LLL:EXT:lang/locallang_general.xml:LGL.allLanguages', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.default_value', 0)
-				)
-			)
-		),
-		'l18n_parent' => array(
-			'displayCond' => 'FIELD:sys_language_uid:>:0',
-			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.l18n_parent',
-			'config' => array(
-				'type' => 'select',
-				'items' => array(
-					array('', 0),
-				),
-				'foreign_table' => 'tx_contagged_terms',
-				'foreign_table_where' => 'AND tx_contagged_terms.pid=###CURRENT_PID### AND tx_contagged_terms.sys_language_uid IN (-1,0)',
-			)
-		),
+        'sys_language_uid' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => array(
+                    array(
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ),
+                ),
+                'default' => 0,
+            )
+        ),
+        'l18n_parent' => array(
+            'exclude' => 1,
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => array(
+                    array('', 0)
+                ),
+                'foreign_table' => 'tx_contagged_terms',
+                'foreign_table_where' => 'AND tx_contagged_terms.pid=###CURRENT_PID### AND tx_contagged_terms.sys_language_uid IN (-1,0)',
+                'default' => 0
+            )
+        ),
 		'l18n_diffsource' => array(
 			'config' => array(
 				'type' => 'passthrough'
@@ -57,94 +64,105 @@ $TCA["tx_contagged_terms"] = array(
 				'default' => '0'
 			)
 		),
-		'starttime' => array(
+        'starttime' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
+            'config' => array(
+                'type' => 'input',
+                'size' => '13',
+                'eval' => 'datetime',
+                'default' => 0
+            ),
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly'
+        ),
+        'endtime' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
+            'config' => array(
+                'type' => 'input',
+                'size' => '13',
+                'eval' => 'datetime',
+                'default' => 0,
+                'range' => array(
+                    'upper' => mktime(0, 0, 0, 1, 1, 2038)
+                )
+            ),
+            'l10n_mode' => 'exclude',
+            'l10n_display' => 'defaultAsReadonly'
+        ),
+        'fe_group' => array(
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
+            'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'size' => 5,
+                'maxitems' => 20,
+                'items' => array(
+                    array(
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login',
+                        -1
+                    ),
+                    array(
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.any_login',
+                        -2
+                    ),
+                    array(
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.usergroups',
+                        '--div--'
+                    )
+                ),
+                'exclusiveKeys' => '-1,-2',
+                'foreign_table' => 'fe_groups',
+                'foreign_table_where' => 'ORDER BY fe_groups.title'
+            )
+        ),
+		'term_main' => Array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.starttime',
-			'config' => array(
+			'label' => $langFile . 'tx_contagged_terms.term_main',
+			'config' => Array(
 				'type' => 'input',
-				'size' => '8',
-				'max' => '20',
-				'eval' => 'date',
-				'default' => '0',
-				'checkbox' => '0'
+				'size' => '30',
+				'eval' => 'required',
 			)
 		),
-		'endtime' => array(
+		'term_alt' => Array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.endtime',
-			'config' => array(
-				'type' => 'input',
-				'size' => '8',
-				'max' => '20',
-				'eval' => 'date',
-				'checkbox' => '0',
-				'default' => '0',
-				'range' => array(
-					'upper' => mktime(0, 0, 0, 12, 31, 2020),
-					'lower' => mktime(0, 0, 0, date('m') - 1, date('d'), date('Y'))
-				)
+			'label' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_alt',
+			'config' => Array(
+				'type' => 'text',
+				'cols' => '30',
+				'rows' => '5',
 			)
 		),
-		'fe_group' => array(
+		'term_type' => Array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.fe_group',
-			'config' => array(
+			'label' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_type',
+			'config' => Array(
 				'type' => 'select',
-				'items' => array(
-					array('', 0),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.hide_at_login', -1),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.any_login', -2),
-					array('LLL:EXT:lang/locallang_general.xml:LGL.usergroups', '--div--')
-				),
-				'foreign_table' => 'fe_groups'
-			)
+                'renderType' => 'selectSingle',
+                'itemsProcFunc' => 'Speedbomb\\Contagged\\Userfuncs\\Tca->addTermTypes',
+                'default' => 0,
+    		),
 		),
-		"term_main" => Array(
-			"exclude" => 1,
-			"label" => "LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_main",
-			"config" => Array(
-				"type" => "input",
-				"size" => "30",
-				"eval" => "required",
-			)
-		),
-		"term_alt" => Array(
-			"exclude" => 1,
-			"label" => "LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_alt",
-			"config" => Array(
-				"type" => "text",
-				"cols" => "30",
-				"rows" => "5",
-			)
-		),
-		"term_type" => Array(
-			"exclude" => 1,
-			"label" => "LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_type",
-			"config" => Array(
-				"type" => "select",
-				"itemsProcFunc" => "user_addTermTypes",
-				"size" => 1,
-				"maxitems" => 1,
-				"disableNoMatchingValueElement" => 1,
-			)
-		),
-		"term_lang" => Array(
-			"exclude" => 1,
-			"label" => "LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang",
-			"config" => Array(
-				"type" => "select",
+		'term_lang' => Array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang',
+			'config' => Array(
+				'type' => 'select',
 				// TODO Make selectable languages configurable.
-				"items" => Array(
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.0", ""),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.1", "en"),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.2", "fr"),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.3", "de"),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.4", "it"),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.5", "es"),
-					Array("LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.6", "un"),
+				'items' => Array(
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.0', ''),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.1', 'en'),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.2', 'fr'),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.3', 'de'),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.4', 'it'),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.5', 'es'),
+					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.6', 'un'),
 				),
-				"size" => 1,
-				"maxitems" => 1,
+				'size' => 1,
+				'maxitems' => 1,
 			)
 		),
 		"term_replace" => Array(
@@ -227,6 +245,7 @@ $TCA["tx_contagged_terms"] = array(
 				"max" => "255",
 				"checkbox" => "",
 				"eval" => "trim",
+				/*
 				"wizards" => array(
 					"_PADDING" => 2,
 					"link" => array(
@@ -237,6 +256,7 @@ $TCA["tx_contagged_terms"] = array(
 						"JSopenParams" => "height=300,width=500,status=0,menubar=0,scrollbars=1"
 					)
 				)
+				*/
 			)
 		),
 		"exclude" => Array(
@@ -315,4 +335,5 @@ if ($extConfArray['getImagesFromDAM'] > 0 && t3lib_extMgm::isLoaded('dam')) {
 	);
 }
 
+unset($langFile);
 #require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('contagged') . 'tx_contagged_userfunction.php');

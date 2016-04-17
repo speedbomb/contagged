@@ -37,7 +37,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 class TermController extends ActionController {
 
 	/**
-	 * @var \Dpn\DpnGlossary\Domain\Repository\TermRepository
+	 * @var TermRepository
 	 */
 	protected $termRepository;
 
@@ -73,6 +73,7 @@ class TermController extends ActionController {
 	 * @return void
 	 */
 	public function showAction(Term $term, $pageUid = NULL) {
+		/*
 		if ('pagination' === $this->settings['listmode']) {
 			$this->view->assign(
 				'paginateLink',
@@ -82,6 +83,7 @@ class TermController extends ActionController {
 				)
 			);
 		}
+		*/
 
 		$this->view->assign('pageUid', $pageUid);
 		$this->view->assign('listPage', $this->settings['listPage']);
