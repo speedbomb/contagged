@@ -7,7 +7,7 @@ $langFile = 'LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:';
 $TCA['tx_contagged_terms'] = array(
 	'ctrl' => $TCA['tx_contagged_terms']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,l18n_parent,l18n_diffsource,hidden,starttime,endtime,fe_group term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude'
+		'showRecordFieldList' => 'sys_language_uid,starttime,endtime, term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude'
 	),
 	'feInterface' => $TCA['tx_contagged_terms']['feInterface'],
 	'columns' => array(
@@ -34,6 +34,7 @@ $TCA['tx_contagged_terms'] = array(
                     ),
                 ),
                 'default' => 0,
+                'showIconTable' => 1,
             )
         ),
         'l18n_parent' => array(
@@ -143,27 +144,18 @@ $TCA['tx_contagged_terms'] = array(
 				'type' => 'select',
                 'renderType' => 'selectSingle',
                 'itemsProcFunc' => \Speedbomb\Contagged\Userfuncs\Tca::class . '->addTermTypes',
-                'default' => 0,
     		),
 		),
 		'term_lang' => Array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang',
-			'config' => Array(
-				'type' => 'select',
-				// TODO Make selectable languages configurable.
-				'items' => Array(
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.0', ''),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.1', 'en'),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.2', 'fr'),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.3', 'de'),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.4', 'it'),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.5', 'es'),
-					Array('LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.term_lang.I.6', 'un'),
-				),
-				'size' => 1,
-				'maxitems' => 1,
-			)
+            'config' => array(
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'showIconTable' => 1,
+                'default' => 0,
+            )
 		),
 		"term_replace" => Array(
 			"exclude" => 1,
@@ -181,13 +173,27 @@ $TCA['tx_contagged_terms'] = array(
 				"size" => "30",
 			)
 		),
-		"desc_long" => Array(
-			"exclude" => 1,
-			"label" => "LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.desc_long",
-			"config" => Array(
-				"type" => "text",
-				"cols" => "30",
-				"rows" => "5",
+		'desc_long' => Array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:contagged/locallang_db.xml:tx_contagged_terms.desc_long',
+            #'defaultExtras' => 'richtext[]',
+			'config' => Array(
+				'type' => 'text',
+				'cols' => '80',
+				'rows' => '10',
+                'wizards' => array(
+                    'RTE' => array(
+                        'notNewRecords' => 1,
+                        'RTEonly' => 1,
+                        'type' => 'script',
+                        'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:bodytext.W.RTE',
+                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_rte.gif',
+                        'module' => array(
+                            'name' => 'wizard_rte'
+                        )
+                    ),
+                ),
+
 			)
 		),
 		"reference" => Array(
@@ -227,13 +233,22 @@ $TCA['tx_contagged_terms'] = array(
 			'config' => Array(
 				'type' => 'group',
 				'internal_type' => 'db',
-				'allowed' => '*',
+				'allowed' => 'tx_contagged_term',
 				'MM' => 'tx_contagged_related_mm',
 				'show_thumbs' => 1,
 				'size' => 3,
-				'autoSizeMax' => 20,
+				'autoSizeMax' => 10,
 				'maxitems' => 9999,
 				'minitems' => 0,
+                'wizards' => array(
+                    'suggest' => array(
+                        'type' => 'suggest',
+                        'default' => array(
+                            'additionalSearchFields' => 'desc_short',
+                            'searchWholePhrase' => 0,
+                        )
+                    ),
+                ),
 			)
 		),
 		"link" => Array(
@@ -268,11 +283,35 @@ $TCA['tx_contagged_terms'] = array(
 		),
 	),
 	"types" => array(
-		"0" => array("showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, term_main, term_alt, term_type, term_lang, term_replace, desc_short, desc_long;;;richtext[*]:rte_transform[mode=ts_css|imgpath=uploads/tx_contagged/rte/], reference, pronunciation, image, dam_images, imagecaption, imagealt, imagetitle, multimedia, related, link, exclude")
+		//"0" => array("showitem" => "sys_language_uid;;;;1-1-1, l18n_parent, l18n_diffsource, hidden;;1, term_main, term_alt, term_type, term_lang, term_replace, desc_short, desc_long;;;richtext[*]:rte_transform[mode=ts_css|imgpath=uploads/tx_contagged/rte/], reference, pronunciation, image, dam_images, imagecaption, imagealt, imagetitle, multimedia, related, link, exclude")
+
+		'1' => array(
+            'showitem' => '
+                  term_main, term_alt, term_type, term_replace, desc_short, desc_long,
+                --div--;' . $langFile . 'tab.details,
+                  reference, link, related, pronunciation,
+                  --palette--;' . $langFile . 'palette.language;language,
+                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
+                  --palette--;' . $langFile . 'palette.access;access,
+                  fe_group
+            '
+        )
 	),
-	"palettes" => array(
-		"1" => array("showitem" => "starttime, endtime, fe_group"),
-		"2" => array("showitem" => "")
+	'palettes' => array(
+        'language' => array(
+            'showitem' => '
+                sys_language_uid, term_lang,
+                --linebreak--,
+                l18n_parent, l18n_diffsource
+            ',
+        ),
+        'access' => array(
+            'showitem' => '
+                hidden, exclude,
+                --linebreak--,
+                starttime, endtime
+            ',
+        ),
 	)
 );
 
@@ -336,4 +375,3 @@ if ($extConfArray['getImagesFromDAM'] > 0 && t3lib_extMgm::isLoaded('dam')) {
 }
 
 unset($langFile);
-#require_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('contagged') . 'tx_contagged_userfunction.php');

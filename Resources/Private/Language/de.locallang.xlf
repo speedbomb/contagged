@@ -18,6 +18,9 @@
 			<trans-unit id="contagged.wizard_description">
 				<target>Listet die Glossarbegriffe auf oder zeigt deren Detailinfo an.</target>
 			</trans-unit>
+			<trans-unit id="tab.details">
+				<target>Details</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -19,6 +19,15 @@
             <trans-unit id="contagged.wizard_description">
                 <source>Lists the glossary terms or shows their details.</source>
             </trans-unit>
+            <trans-unit id="tab.details">
+                <source>Details</source>
+            </trans-unit>
+            <trans-unit id="palette.access">
+                <source>Access</source>
+            </trans-unit>
+            <trans-unit id="palette.language">
+                <source>Language</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
