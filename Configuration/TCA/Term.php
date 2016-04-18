@@ -142,7 +142,7 @@ $TCA['tx_contagged_terms'] = array(
 			'config' => Array(
 				'type' => 'select',
                 'renderType' => 'selectSingle',
-                'itemsProcFunc' => 'Speedbomb\\Contagged\\Userfuncs\\Tca->addTermTypes',
+                'itemsProcFunc' => \Speedbomb\Contagged\Userfuncs\Tca::class . '->addTermTypes',
                 'default' => 0,
     		),
 		),

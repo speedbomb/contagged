@@ -31,14 +31,13 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * @package contagged
  */
-class Tca implements \TYPO3\CMS\Core\SingletonInterface {
+class Tca {
 
     /**
      * @param array $field Current field config
      */
     public function addTermTypes(&$field) {
-        \Speedbomb\Contagged\Userfuncs\Tca
-
+        
         $template = GeneralUtility::makeInstance('TYPO3\CMS\Core\TypoScript\TemplateService');
         $template->tt_track = 0;
         $template->init();
