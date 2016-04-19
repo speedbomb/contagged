@@ -4,12 +4,39 @@ if (!defined('TYPO3_MODE')) {
 }
 $langFile = 'LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:';
 
-$TCA['tx_contagged_terms'] = array(
-	'ctrl' => $TCA['tx_contagged_terms']['ctrl'],
-	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid,starttime,endtime, term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude'
-	),
-	'feInterface' => $TCA['tx_contagged_terms']['feInterface'],
+return array(
+    'ctrl' => array(
+        'title' => 'LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:tx_contagged_terms',
+        'label' => 'term_main',
+        'label_alt' => 'term_alt,term_replace',
+        'label_alt_force' => true,
+        'searchFields' => 'term_main,term_alt,desc_short,desc_long,term_replace',
+        'tstamp' => 'tstamp',
+        'crdate' => 'crdate',
+        'cruser_id' => 'cruser_id',
+        'versioningWS' => 2,
+        'origUid' => 't3_origuid',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l18n_parent',
+        'transOrigDiffSourceField' => 'l18n_diffsource',
+        #'sortby' => 'sorting',
+        'default_sortby' => 'ORDER BY term_main ASC',
+        'delete' => 'deleted',
+        'enablecolumns' => array(
+            'disabled' => 'hidden',
+            'starttime' => 'starttime',
+            'endtime' => 'endtime',
+            'fe_group' => 'fe_group',
+        ),
+        'useColumnsForDefaultValues' => 'term_type',
+        'iconfile' => 'EXT:contagged/Resources/Public/Icons/Term.gif',
+    ),
+    'interface' => array(
+        'showRecordFieldList' => 'sys_language_uid, starttime, endtime, term_main, term_alt, term_type, term_lang, replacement, desc_short, desc_long, reference, pronunciation, image, dam_images,imagecaption, imagealt, imagetitle, multimedia, related, link, exclude'
+    ),
+    'feInterface' => array(
+        'fe_admin_fieldList' => 'sys_language_uid, l18n_parent, l18n_diffsource, hidden, starttime, endtime, fe_group, term_main, term_alt, term_type, term_lang, term_replace, desc_short, desc_long, image, dam_images, imagecaption, imagealt, imagetitle, related, link, exclude'
+    ),
 	'columns' => array(
 		't3ver_label' => array(
 			'label' => 'LLL:EXT:lang/locallang_general.xml:LGL.versionLabel',
@@ -233,7 +260,7 @@ $TCA['tx_contagged_terms'] = array(
 			'config' => Array(
 				'type' => 'group',
 				'internal_type' => 'db',
-				'allowed' => 'tx_contagged_term',
+				'allowed' => 'tx_contagged_terms',
 				'MM' => 'tx_contagged_related_mm',
 				'show_thumbs' => 1,
 				'size' => 3,
@@ -315,6 +342,7 @@ $TCA['tx_contagged_terms'] = array(
 	)
 );
 
+/*
 $extConfArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['contagged']);
 if ($extConfArray['getImagesFromDAM'] > 0 && t3lib_extMgm::isLoaded('dam')) {
 	$TCA["tx_contagged_terms"]['columns'] = array_merge_recursive($TCA["tx_contagged_terms"]['columns'], array(
@@ -373,5 +401,5 @@ if ($extConfArray['getImagesFromDAM'] > 0 && t3lib_extMgm::isLoaded('dam')) {
 		)
 	);
 }
-
+*/
 unset($langFile);
