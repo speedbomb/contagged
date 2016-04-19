@@ -27,7 +27,7 @@ if(TYPO3_MODE == 'BE') {
 $tempColumns = Array(
 	"tx_contagged_dont_parse" => Array(
 		"exclude" => 1,
-		"label" => "LLL:EXT:contagged/locallang_db.xml:pages.tx_contagged_dont_parse",
+		"label" => "LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:tx_contagged_dont_parse",
 		"config" => Array(
 			"type" => "check",
 		)
@@ -39,5 +39,3 @@ $tempColumns = Array(
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns("tt_content", $tempColumns, 1);
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes("tt_content", "tx_contagged_dont_parse;;;;1-1-1");
-
-?>

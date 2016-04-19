@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-    <file source-language="en" datatype="plaintext" original="messages" date="2016-04-13T22:18:05Z"
-          product-name="contagged">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-04-13T22:18:05Z" product-name="contagged">
         <header/>
         <body>
-            <trans-unit id="tx_contagged_terms">
-                <source>Terms</source>
-            </trans-unit>
-            <trans-unit id="tx_contagged_terms.plugin">
-                <source>Contagged (glossary)</source>
-            </trans-unit>
-            <trans-unit id="tx_contagged_terms.term_main">
-                <source>Term</source>
-            </trans-unit>
-            <trans-unit id="contagged.wizard_title">
-                <source>Contagged (glossary)</source>
-            </trans-unit>
-            <trans-unit id="contagged.wizard_description">
-                <source>Lists the glossary terms or shows their details.</source>
-            </trans-unit>
-            <trans-unit id="tab.details">
-                <source>Details</source>
-            </trans-unit>
-            <trans-unit id="palette.access">
-                <source>Access</source>
-            </trans-unit>
-            <trans-unit id="palette.language">
-                <source>Language</source>
-            </trans-unit>
+            <trans-unit id="contagged.wizard_description"><source>Lists the glossary terms or shows their details.</source></trans-unit>
+            <trans-unit id="contagged.wizard_title"><source>Contagged (glossary)</source></trans-unit>
+            <trans-unit id="palette.access"><source>Access</source></trans-unit>
+            <trans-unit id="palette.language"><source>Language</source></trans-unit>
+            <trans-unit id="tab.details"><source>Details</source></trans-unit>
+            <trans-unit id="tx_contagged_dont_parse"><source>Don't parse text with Contagged</source></trans-unit>
+            <trans-unit id="tx_contagged_terms"><source>Terms</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.desc_long"><source>Long Description</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.desc_short"><source>Short Description (e.g. Tool Tip Text)</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.exclude"><source>Exclude from front-end lists</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.imagealt"><source>ALT-Text</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.imagecaption"><source>Caption</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.imagetitle"><source>TITLE-Text</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.link"><source>Link</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.multimedia"><source>Media</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.plugin"><source>Contagged (glossary)</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.pronunciation"><source>Pronunciation (IPA)</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.reference"><source>Source</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.related"><source>See also</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.term_alt"><source>Alternative terms</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.term_lang"><source>Language of term</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.term_main"><source>Term</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.term_replace"><source>Replacement</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.term_type"><source>Type of term</source></trans-unit>
         </body>
     </file>
 </xliff>
