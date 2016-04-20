@@ -34,7 +34,7 @@ use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
  * Main controller
  * @package contagged
  */
-class TermController extends ActionController {
+class GlossaryController extends ActionController {
 
 	/**
 	 * @var TermRepository

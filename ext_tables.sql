@@ -37,7 +37,7 @@ CREATE TABLE tx_contagged_terms (
 	pronunciation tinytext NOT NULL,
 	image text NOT NULL,
 	related int(11) DEFAULT '0' NOT NULL,
-	link varchar(511) NOT NULL,
+	link varchar(511) DEFAULT '' NOT NULL,
 	exclude tinyint(3) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),

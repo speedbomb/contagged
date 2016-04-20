@@ -9,11 +9,11 @@ if (!defined('TYPO3_MODE')) {
 	'Glossary',
     // cacheable actions
 	array(
-		'Term' => 'list,detail'
+		'Glossary' => 'list,detail'
 	),
 	// non-cacheable actions
 	array(
-		'Term' => ''
+		'Glossary' => ''
 	)
 );
 

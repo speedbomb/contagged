@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <viewmode>
+                        <TCEforms>
+                            <label>LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode.0</numIndex>
+                                        <numIndex index="1">list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode.1</numIndex>
+                                        <numIndex index="1">detail</numIndex>
+                                    </numIndex>
+                                </items>
+                            </config>
+                        </TCEforms>
+                    </viewmode>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
