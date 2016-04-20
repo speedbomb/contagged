@@ -4,6 +4,12 @@ config.tx_extbase.persistence.classes {
 			tableName = tx_contagged_terms
             columns {
                 term_main.mapOnProperty = termMain
+                term_alt.mapOnProperty = termAlt
+                term_type.mapOnProperty = termType
+                term_lang.mapOnProperty = termLang
+                term_replace.mapOnProperty = termReplace
+                desc_short.mapOnProperty = short
+                desc_long.mapOnProperty = description
             }
 		}
 	}

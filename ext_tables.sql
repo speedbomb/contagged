@@ -36,13 +36,8 @@ CREATE TABLE tx_contagged_terms (
 	reference text NOT NULL,
 	pronunciation tinytext NOT NULL,
 	image text NOT NULL,
-	dam_images int(11) DEFAULT '0' NOT NULL,
-	imagecaption text NOT NULL,
-	imagealt text NOT NULL,
-	imagetitle text NOT NULL,
-	multimedia tinytext,
 	related int(11) DEFAULT '0' NOT NULL,
-	link tinytext NOT NULL,
+	link varchar(511) NOT NULL,
 	exclude tinyint(3) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),
@@ -68,12 +63,12 @@ CREATE TABLE tx_contagged_related_mm (
 #
 CREATE TABLE pages (
 	tx_contagged_dont_parse tinyint(3) DEFAULT '0' NOT NULL,
-	tx_contagged_keywords text NOT NULL,
+	tx_contagged_keywords text NOT NULL
 );
 
 #
 # Table structure for table 'tt_content'
 #
 CREATE TABLE tt_content (
-	tx_contagged_dont_parse tinyint(3) DEFAULT '0' NOT NULL,
+	tx_contagged_dont_parse tinyint(3) DEFAULT '0' NOT NULL
 );

@@ -22,7 +22,6 @@ if(TYPO3_MODE == 'BE') {
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_contagged_terms');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToInsertRecords('tx_contagged_terms');
 
-
 // Add a field  "exclude this page from parsing" to the table "pages" and "tt_content"
 $tempColumns = Array(
 	"tx_contagged_dont_parse" => Array(
