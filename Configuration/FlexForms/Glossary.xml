@@ -11,24 +11,24 @@
                 </TCEforms>
                 <type>array</type>
                 <el>
-                    <viewmode>
+                    <switchableControllerActions>
                         <TCEforms>
-                            <label>LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode</label>
+                            <label>LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.controllerAction</label>
                             <config>
                                 <type>select</type>
                                 <items type="array">
-                                    <numIndex index="0" type="array">
-                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode.0</numIndex>
-                                        <numIndex index="1">list</numIndex>
-                                    </numIndex>
                                     <numIndex index="1" type="array">
-                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.viewmode.1</numIndex>
-                                        <numIndex index="1">detail</numIndex>
+                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.controllerAction.0</numIndex>
+                                        <numIndex index="1">Glossary->list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:contagged/Resources/Private/Language/locallang.xlf:plugin.glossary.controllerAction.1</numIndex>
+                                        <numIndex index="1">Glossary->detail</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
                         </TCEforms>
-                    </viewmode>
+                    </switchableControllerActions>
                 </el>
             </ROOT>
         </sDEF>

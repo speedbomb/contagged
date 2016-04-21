@@ -8,9 +8,9 @@
             <trans-unit id="palette.access" approved="yes"><source>Access</source><target state="translated">Zugriff</target></trans-unit>
             <trans-unit id="palette.language" approved="yes"><source>Language</source><target state="translated">Sprache</target></trans-unit>
             <trans-unit id="plugin.glossary" approved="yes"><source>Glossar</source><target state="translated">Glossar</target></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode" approved="yes"><source>View mode</source><target state="translated">Anzeigemodus</target></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode.0" approved="yes"><source>List of terms</source><target state="translated">Liste der Begriffe</target></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode.1" approved="yes"><source>Term detail</source><target state="translated">Begriffsdetailansicht</target></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction" approved="yes"><source>View mode</source><target state="translated">Anzeigemodus</target></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction.0" approved="yes"><source>List of terms</source><target state="translated">Liste der Begriffe</target></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction.1" approved="yes"><source>Term detail</source><target state="translated">Begriffsdetailansicht</target></trans-unit>
             <trans-unit id="tab.details" approved="yes"><source>Details</source><target state="translated">Details</target></trans-unit>
             <trans-unit id="tx_contagged_dont_parse" approved="yes"><source>Don't parse text with Contagged</source><target state="translated">Text nicht mit Contagged parsen</target></trans-unit>
             <trans-unit id="tx_contagged_terms" approved="yes"><source>Terms</source><target state="translated">Begriffe</target></trans-unit>

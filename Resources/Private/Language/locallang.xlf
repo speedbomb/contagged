@@ -8,9 +8,9 @@
             <trans-unit id="palette.access"><source>Access</source></trans-unit>
             <trans-unit id="palette.language"><source>Language</source></trans-unit>
             <trans-unit id="plugin.glossary"><source>Glossar</source></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode"><source>View mode</source></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode.0"><source>List of terms</source></trans-unit>
-            <trans-unit id="plugin.glossary.viewmode.1"><source>Term detail</source></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction"><source>View mode</source></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction.0"><source>List of terms</source></trans-unit>
+            <trans-unit id="plugin.glossary.controllerAction.1"><source>Term detail</source></trans-unit>
             <trans-unit id="tab.details"><source>Details</source></trans-unit>
             <trans-unit id="tx_contagged_dont_parse"><source>Don't parse text with Contagged</source></trans-unit>
             <trans-unit id="tx_contagged_terms"><source>Terms</source></trans-unit>

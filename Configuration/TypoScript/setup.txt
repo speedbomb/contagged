@@ -15,8 +15,6 @@ tt_content {
 */
 
 plugin.tx_contagged {
-	viewmode = list
-
     view {
         templateRootPaths {
             0 = EXT:contagged/Resources/Private/Templates/
@@ -39,33 +37,33 @@ plugin.tx_contagged {
     }
 
     settings {
-        linkToListPage = {$contagged.linkToListPage}
-        listPages = {$contagged.listPages}
-        includeRootPages = {$contagged.includeRootPages}
-        excludeRootPages = {$contagged.excludeRootPages}
-        includePages = {$contagged.includePages}
-        excludePages = {$contagged.excludePages}
-        excludeTags = {$contagged.excludeTags}
-        autoExcludeTags = {$contagged.autoExcludeTags}
-        fetchRelatedTerms = {$contagged.fetchRelatedTerms}
-        checkPreAndPostMatches = {$contagged.checkPreAndPostMatches}
-        respectCase = {$contagged.respectCase}
-        addTitleAttribute = {$contagged.addTitleAttribute}
-        addLangAttribute = {$contagged.addLangAttribute}
-        addCssClassAttribute = {$contagged.addCssClassAttribute}
-        replaceTerm = {$contagged.replaceTerm}
-        maxRecurrences = {$contagged.maxRecurrences}
-        maxRecurrencesPerPage = {$contagged.maxRecurrencesPerPage}
-        updateKeywords = {$contagged.updateKeywords}
-        labelWrap1 = {$contagged.labelWrap1}
-        labelWrap2 = {$contagged.labelWrap2}
-        modifier = {$contagged.modifier}
-        sortField = {$contagged.sortField}
-        fieldsToMap = {$contagged.fieldsToMap}
-        fieldsToParse = {$contagged.fieldsToParse}
-        autoExcludeTerms = {$contagged.autoExcludeTerms}
-        addBackLink = {$contagged.addBackLink}
-        addBackLinkDescription = {$contagged.addBackLinkDescription}
+        linkToListPage = {$plugin.contagged.settings.linkToListPage}
+        listPages = {$plugin.contagged.settings.listPages}
+        includeRootPages = {$plugin.contagged.settings.includeRootPages}
+        excludeRootPages = {$plugin.contagged.settings.excludeRootPages}
+        includePages = {$plugin.contagged.settings.includePages}
+        excludePages = {$plugin.contagged.settings.excludePages}
+        excludeTags = {$plugin.contagged.settings.excludeTags}
+        autoExcludeTags = {$plugin.contagged.settings.autoExcludeTags}
+        fetchRelatedTerms = {$plugin.contagged.settings.fetchRelatedTerms}
+        checkPreAndPostMatches = {$plugin.contagged.settings.checkPreAndPostMatches}
+        respectCase = {$plugin.contagged.settings.respectCase}
+        addTitleAttribute = {$plugin.contagged.settings.addTitleAttribute}
+        addLangAttribute = {$plugin.contagged.settings.addLangAttribute}
+        addCssClassAttribute = {$plugin.contagged.settings.addCssClassAttribute}
+        replaceTerm = {$plugin.contagged.settings.replaceTerm}
+        maxRecurrences = {$plugin.contagged.settings.maxRecurrences}
+        maxRecurrencesPerPage = {$plugin.contagged.settings.maxRecurrencesPerPage}
+        updateKeywords = {$plugin.contagged.settings.updateKeywords}
+        labelWrap1 = {$plugin.contagged.settings.labelWrap1}
+        labelWrap2 = {$plugin.contagged.settings.labelWrap2}
+        modifier = {$plugin.contagged.settings.modifier}
+        sortField = {$plugin.contagged.settings.sortField}
+        fieldsToMap = {$plugin.contagged.settings.fieldsToMap}
+        fieldsToParse = {$plugin.contagged.settings.fieldsToParse}
+        autoExcludeTerms = {$plugin.contagged.settings.autoExcludeTerms}
+        addBackLink = {$plugin.contagged.settings.addBackLink}
+        addBackLinkDescription = {$plugin.contagged.settings.addBackLinkDescription}
     }
 
 	images {

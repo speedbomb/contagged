@@ -32,61 +32,80 @@ use TYPO3\CMS\Extbase\Persistence\Generic\QueryResult;
 
 /**
  * Main controller
+ *
  * @package contagged
  */
 class GlossaryController extends ActionController {
 
-	/**
-	 * @var TermRepository
-	 */
-	protected $termRepository;
+    /**
+     * Plugin data for the templates
+     * @var array
+     */
+    protected $pluginData;
 
-	/**
-	 * @param TermRepository $termRepository
-	 * @return void
-	 */
-	public function injectTermRepository(TermRepository $termRepository) {
-		$this->termRepository = $termRepository;
-	}
+    /**
+     * Repository for terms
+     * @var TermRepository
+     */
+    protected $termRepository;
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		/** @var array|QueryResult $terms */
-		$terms = 'character' === $this->settings['listmode'] ?
-			$this->termRepository->findAllGroupedByFirstCharacter() :
-			$this->termRepository->findAll();
+    /**
+     * Initializes the controller before invoking an action method.
+     *
+     * @return void
+     * @api
+     */
+    protected function initializeAction() {
+        $this->pluginData = array('action' => $this->request->getControllerActionName());
+    }
 
-		$this->view->assign('detailPage', $this->settings['detailPage']);
-		$this->view->assign('listmode', $this->settings['listmode']);
-		$this->view->assign('terms', $terms);
-	}
+    /**
+     * @param TermRepository $termRepository
+     * @return void
+     */
+    public function injectTermRepository(TermRepository $termRepository) {
+        $this->termRepository = $termRepository;
+    }
 
-	/**
-	 * action show
-	 *
-	 * @param Term    $term
-	 * @param integer $pageUid
-	 * @return void
-	 */
-	public function showAction(Term $term, $pageUid = NULL) {
-		/*
-		if ('pagination' === $this->settings['listmode']) {
-			$this->view->assign(
-				'paginateLink',
-				PaginateController::paginationArguments(
-					$term->getName(),
-					$this->settings['pagination']['characters']
-				)
-			);
-		}
-		*/
+    /**
+     * action list
+     *
+     * @return void
+     */
+    public function listAction() {
 
-		$this->view->assign('pageUid', $pageUid);
-		$this->view->assign('listPage', $this->settings['listPage']);
-		$this->view->assign('term', $term);
-	}
+        /** @var array|QueryResult $terms */
+        $terms = 'character' === $this->settings['listmode'] ?
+            $this->termRepository->findAllGroupedByFirstCharacter() :
+            $this->termRepository->findAll();
+
+        $this->view->assign('detailPage', $this->settings['detailPage']);
+        $this->view->assign('terms', $terms);
+        $this->view->assign('plugin', $this->pluginData);
+    }
+
+    /**
+     * action show
+     *
+     * @param Term $term
+     * @param integer $pageUid
+     * @return void
+     */
+    public function showAction(Term $term, $pageUid = null) {
+        /*
+        if ('pagination' === $this->settings['listmode']) {
+            $this->view->assign(
+                'paginateLink',
+                PaginateController::paginationArguments(
+                    $term->getName(),
+                    $this->settings['pagination']['characters']
+                )
+            );
+        }
+        */
+
+        $this->view->assign('pageUid', $pageUid);
+        $this->view->assign('listPage', $this->settings['listPage']);
+        $this->view->assign('term', $term);
+    }
 }
