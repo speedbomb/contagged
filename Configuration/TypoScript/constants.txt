@@ -109,5 +109,7 @@ plugin.contagged {
         pointerName = pointer
         # cat=contagged (list)//81; type=boolean; label=Enable htmlspecialchars():Enable htmlspecialchars() for pagebrowser (set this to 0 if you want f.e use images instead of text for links like 'previous' and 'next')
         enableHtmlspecialchars = 1
+        # cat=contagged (list)//90; type=options[normal,character,pagination]; label=Listmode: normal, character or paginated by characters
+        listmode = normal
     }
 }

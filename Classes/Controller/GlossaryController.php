@@ -75,11 +75,12 @@ class GlossaryController extends ActionController {
     public function listAction() {
 
         /** @var array|QueryResult $terms */
-        $terms = 'character' === $this->settings['listmode'] ?
+        $terms = $this->settings['listmode'] === 'character' ?
             $this->termRepository->findAllGroupedByFirstCharacter() :
             $this->termRepository->findAll();
 
-        $this->view->assign('detailPage', $this->settings['detailPage']);
+
+        $this->view->assign('settings', $this->settings);
         $this->view->assign('terms', $terms);
         $this->view->assign('plugin', $this->pluginData);
     }
