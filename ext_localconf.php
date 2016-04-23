@@ -13,7 +13,7 @@ if (!defined('TYPO3_MODE')) {
 	),
 	// non-cacheable actions
 	array(
-		'Glossary' => ''
+		'Glossary' => 'list,detail'
 	)
 );
 

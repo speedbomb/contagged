@@ -1,0 +1,33 @@
+<div xmlns="http://www.w3.org/1999/xhtml" lang="en"
+     xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+
+    <f:section name="Main">
+
+        <div class="contagged-detail">
+            <h1>{term.termMain}</h1>
+            <p class="short"><em>{term.short}</em></p>
+            <div class="description"><f:format.html>{term.description}</f:format.html></div>
+            <f:if condition="{references}">
+            <div class="reference">
+                <f:translate key="tx_contagged_terms.reference" />:
+                <ul>
+                <f:for each="{references}" as="reference">
+                    <li><f:format.html>{reference}</f:format.html></li>
+                </f:for>
+                </ul>
+            </div>
+            </f:if>
+            <f:if condition="{term.image}">
+                <div class="images">
+                    <f:for each="{term.image}" as="image">
+                        <a href="{f:uri.image(src:'{image.originalResource.publicUrl}')}" title="{image.title}" rel="lightbox[t{term.uid}]">
+                            <f:image src="{image.uid}" width="150" alt="{term.termMain}" treatIdAsReference="TRUE"/>
+                        </a>
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+
+    </f:section>
+
+</div>

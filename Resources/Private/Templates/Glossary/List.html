@@ -1,43 +1,16 @@
 <div xmlns="http://www.w3.org/1999/xhtml" lang="en"
-	 xmlns:v="http://typo3.org/ns/FluidTYPO3/Vhs/ViewHelpers"
-	 v:schemaLocation="https://fluidtypo3.org/schemas/vhs-master.xsd"
 	 xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
 
     <f:layout name="Default" />
-<!--
-	<f:section name="Configuration">
-	</f:section>
--->
-
-	<f:section name="Preview">
-		<strong>Startseitenslider - Groß mit 3 Bildern</strong><br>
-            <f:if condition="{viewmode}">
-                <f:then>
-                    {viewmode}
-                </f:then>
-            </f:if>
-	</f:section>
 
 	<f:section name="Main">
-        <f:debug>{terms}</f:debug>
-
 		<div class="contagged-list">
-			<f:if condition="{images}">
-				<f:then>
-					{v:content.resources.fal(field: 'images') -> v:variable.set(name: 'falrels')}
-					<v:condition.type.isArray value="{falrels}">
-						<f:then>
-							<div class="slide-wrapper">
-								<f:for each="{falrels}" as="img">
-									<div>
-										<f:image src="{img.id}" width="900c" height="540" treatIdAsReference="true" class="img-responsive" />
-									</div>
-								</f:for>
-							</div>
-						</f:then>
-					</v:condition.type.isArray>
-				</f:then>
-			</f:if>
+            <dl>
+                <f:for each="{terms}" as="term">
+                    <dt><f:link.action pageUid="{settings.detailPage}" action="detail" arguments="{term: term}">{term.termMain}</f:link.action></dt>
+                    <dd>{term.short}</dd>
+                </f:for>
+            </dl>
 		</div>
 	</f:section>
 </div>

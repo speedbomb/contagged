@@ -68,7 +68,7 @@ class GlossaryController extends ActionController {
     }
 
     /**
-     * action list
+     * action: list
      *
      * @return void
      */
@@ -79,20 +79,18 @@ class GlossaryController extends ActionController {
             $this->termRepository->findAllGroupedByFirstCharacter() :
             $this->termRepository->findAll();
 
-
-        $this->view->assign('settings', $this->settings);
         $this->view->assign('terms', $terms);
         $this->view->assign('plugin', $this->pluginData);
     }
 
     /**
-     * action show
+     * action: detail
      *
      * @param Term $term
      * @param integer $pageUid
      * @return void
      */
-    public function showAction(Term $term, $pageUid = null) {
+    public function detailAction(Term $term, $pageUid = null) {
         /*
         if ('pagination' === $this->settings['listmode']) {
             $this->view->assign(
@@ -105,8 +103,10 @@ class GlossaryController extends ActionController {
         }
         */
 
+        $references = $term->getReference(true);
+
         $this->view->assign('pageUid', $pageUid);
-        $this->view->assign('listPage', $this->settings['listPage']);
+        $this->view->assign('references', $references);
         $this->view->assign('term', $term);
     }
 }

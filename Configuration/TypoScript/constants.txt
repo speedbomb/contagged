@@ -1,4 +1,4 @@
-plugin.contagged {
+plugin.tx_contagged {
 
     view {
 		# cat=plugin.tx_contagged/file; type=string; label=Path to template root (FE)
@@ -24,7 +24,9 @@ plugin.contagged {
         # cat=contagged (base settings)//50; type=string; label=Pages to be excluded: A comma separated list of pages to be excluded from parsing. Overwrites the settings of "includePages" and "includeRootPages".
         excludePages =
         # cat=contagged (base settings)//70; type=int; label=Default List Page (PID): PID of the default list page if no special list page in the configuration of a type of term is selected. This could be overwritten by the type configuration.
-        listPages =
+        listPage =
+        # cat=contagged (base settings)//71; type=int; label=Default Detail Page (PID): PID of the default detail page. This could be overwritten by the type configuration.
+        detailPage =
         # cat=contagged (base settings)//80; type=int; label=Link to list page: Set this to 1 if all types of terms shold be linked to the list page specified by "listPage". This could be overwritten by the type configuration. you have to configure a list page globally (see below) or in the configuration of a type of term.
         linkToListPage = 1
 
@@ -109,7 +111,8 @@ plugin.contagged {
         pointerName = pointer
         # cat=contagged (list)//81; type=boolean; label=Enable htmlspecialchars():Enable htmlspecialchars() for pagebrowser (set this to 0 if you want f.e use images instead of text for links like 'previous' and 'next')
         enableHtmlspecialchars = 1
-        # cat=contagged (list)//90; type=options[normal,character,pagination]; label=Listmode: normal, character or paginated by characters
+
+        # cat=contagged (list)//200; type=options[normal,character,pagination]; label=Listmode: normal, character or paginated by characters
         listmode = normal
     }
 }

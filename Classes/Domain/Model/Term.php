@@ -23,6 +23,7 @@ namespace Speedbomb\Contagged\Domain\Model;
      *
      *  This copyright notice MUST APPEAR in all copies of the script!
      ***************************************************************/
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class represents a term.
@@ -45,6 +46,20 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     protected $image;
+
+    /**
+     * Link
+     *
+     * @var string
+     */
+    protected $link;
+
+    /**
+     * Reference
+     *
+     * @var string
+     */
+    protected $reference;
 
     /**
      * Short description, i.e. for tool tips.
@@ -108,6 +123,31 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     /**
      * @return string
      */
+    public function getLink() {
+        return $this->link;
+    }
+
+    /**
+     * @param bool $as_list Return field value as single items (separated by line break)
+     * @return string|array
+     */
+    public function getReference($as_list = false) {
+        if($as_list == true) {
+            $reference = str_replace(array("\r\n", "\r"), "\n", $this->reference);
+            $references = GeneralUtility::trimExplode("\n", $reference, true);
+            foreach($references as $rk => $rv) {
+                if(preg_match('/^(http|https):\/\/(.*)/', $rv, $matches)) {
+                    $references[$rk] = '<a href="' . $matches[0] . '" target="_blank">' . $matches[2] . '</a>';
+                }
+            }
+            return $references;
+        }
+        return $this->reference;
+    }
+
+    /**
+     * @return string
+     */
     public function getShort() {
         return $this->short;
     }
@@ -159,6 +199,20 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
      */
     public function setImage($image) {
         $this->image = $image;
+    }
+
+    /**
+     * @param string $link
+     */
+    public function setLink($link) {
+        $this->link = $link;
+    }
+
+    /**
+     * @param string $reference
+     */
+    public function setReference($reference) {
+        $this->reference = $reference;
     }
 
     /**
