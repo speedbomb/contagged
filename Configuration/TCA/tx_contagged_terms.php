@@ -198,6 +198,7 @@ return array(
 			'config' => Array(
 				'type' => 'input',
 				'size' => '30',
+				'eval' => 'required',
 			)
 		),
 		'desc_long' => Array(
@@ -240,19 +241,6 @@ return array(
 				'size' => '30',
 			)
 		),
-		'multimedia' => Array(
-			'label' => $langFile . 'tx_contagged_terms.multimedia',
-			'config' => Array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'allowed' => 'swf,swa,dcr,wav,avi,au,mov,asf,mpg,wmv,mp3,mp4,m4v',
-				'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-				'uploadfolder' => 'uploads/media',
-				'size' => '2',
-				'maxitems' => '1',
-				'minitems' => '0'
-			)
-		),
 		'related' => Array(
 			'exclude' => 1,
 			'l10n_mode' => 'exclude',
@@ -261,7 +249,10 @@ return array(
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'tx_contagged_terms',
-				'MM' => 'tx_contagged_related_mm',
+                'foreign_table' => 'tx_contagged_terms',
+                'foreign_table_where' => 'AND ###THIS_UID### != tx_contagged_terms.uid',
+                'MM' => 'tx_contagged_related_mm',
+                'MM_opposite_field' => 'related',
 				'show_thumbs' => 1,
 				'size' => 3,
 				'autoSizeMax' => 10,
@@ -311,20 +302,40 @@ return array(
 				'type' => 'check',
 			)
 		),
-		'image' => array(
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('image', array(
-				'appearance' => array(
-					'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
-				),
-				'foreign_types' => array(
-					'0' => array(
-						'showitem' => '
+        'image' => array(
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.images',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('image', array(
+                'appearance' => array(
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:images.addFileReference'
+                ),
+                'foreign_types' => array(
+                    '0' => array(
+                        'showitem' => '
 							--palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
 							--palette--;;filePalette'
-					)
-				),
-			), $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+                    )
+                ),
+            ), $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+        ),
+		'multimedia' => array(
+            'label' => $langFile . 'tx_contagged_terms.multimedia',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig('multimedia', array(
+                'appearance' => array(
+                    'createNewRelationLinkTitle' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:media.addFileReference'
+                ),
+                'foreign_types' => array(
+                    '0' => array(
+                        'showitem' => '
+                            --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.videoOverlayPalette;videoOverlayPalette,
+                            --palette--;;filePalette'
+                    ),
+                    \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => array(
+                        'showitem' => '
+                            --palette--;LLL:EXT:lang/locallang_tca.xlf:sys_file_reference.videoOverlayPalette;videoOverlayPalette,
+                            --palette--;;filePalette'
+                    ),
+                ),
+            ), 'swf,swa,dcr,wav,avi,au,mov,asf,mpg,wmv,mp3,mp4,m4v')
 		),
 	),
 	'types' => array(
@@ -336,8 +347,9 @@ return array(
                 --div--;' . $langFile . 'tab.details,
                   reference, link, related, pronunciation,
                   --palette--;' . $langFile . 'palette.language;language,
-                --div--;' . $langFile . 'tab.details,
+                --div--;' . $langFile . 'tab.media,
                   image,
+                  multimedia,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.access,
                   --palette--;' . $langFile . 'palette.access;access,
                   fe_group
@@ -361,64 +373,3 @@ return array(
         ),
 	)
 );
-
-/*
-$extConfArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['contagged']);
-if ($extConfArray['getImagesFromDAM'] > 0 && t3lib_extMgm::isLoaded('dam')) {
-	$TCA['tx_contagged_terms']['columns'] = array_merge_recursive($TCA['tx_contagged_terms']['columns'], array(
-			'dam_images' => txdam_getMediaTCA('image_field', 'dam_images')
-		)
-	);
-} else {
-	$TCA['tx_contagged_terms']['columns'] = array_merge_recursive($TCA['tx_contagged_terms']['columns'], array(
-			'image' => Array(
-				'exclude' => 1,
-				'l10n_mode' => $l10n_mode_image,
-				'label' => 'LLL:EXT:lang/locallang_general.php:LGL.images',
-				'config' => Array(
-					'type' => 'group',
-					'internal_type' => 'file',
-					'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-					'max_size' => $GLOBALS['TYPO3_CONF_VARS']['BE']['maxFileSize'],
-					'uploadfolder' => 'uploads/pics',
-					'show_thumbs' => '1',
-					'size' => 3,
-					'autoSizeMax' => 15,
-					'maxitems' => '99',
-					'minitems' => '0'
-				)
-			),
-			'imagecaption' => Array(
-				'exclude' => 1,
-				'label' => $langFile . 'tx_contagged_terms.imagecaption',
-				'l10n_mode' => $l10n_mode,
-				'config' => Array(
-					'type' => 'text',
-					'cols' => '30',
-					'rows' => '3'
-				)
-			),
-			'imagealt' => Array(
-				'exclude' => 1,
-				'label' => $langFile . 'tx_contagged_terms.imagealt',
-				'l10n_mode' => $l10n_mode,
-				'config' => Array(
-					'type' => 'text',
-					'cols' => '20',
-					'rows' => '3'
-				)
-			),
-			'imagetitle' => Array(
-				'exclude' => 1,
-				'label' => $langFile . 'tx_contagged_terms.imagetitle',
-				'l10n_mode' => $l10n_mode,
-				'config' => Array(
-					'type' => 'text',
-					'cols' => '20',
-					'rows' => '3'
-				)
-			),
-		)
-	);
-}
-*/

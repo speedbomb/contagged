@@ -12,6 +12,8 @@
             <trans-unit id="plugin.glossary.controllerAction.0"><source>List of terms</source></trans-unit>
             <trans-unit id="plugin.glossary.controllerAction.1"><source>Term detail</source></trans-unit>
             <trans-unit id="tab.details"><source>Details</source></trans-unit>
+            <trans-unit id="tab.media"><source>Media</source></trans-unit>
+            <trans-unit id="tpl.see_also"><source>See also:</source></trans-unit>
             <trans-unit id="tx_contagged_dont_parse"><source>Don't parse text with Contagged</source></trans-unit>
             <trans-unit id="tx_contagged_terms"><source>Terms</source></trans-unit>
             <trans-unit id="tx_contagged_terms.desc_long"><source>Long Description</source></trans-unit>
@@ -25,7 +27,7 @@
             <trans-unit id="tx_contagged_terms.plugin"><source>Contagged (glossary)</source></trans-unit>
             <trans-unit id="tx_contagged_terms.pronunciation"><source>Pronunciation (IPA)</source></trans-unit>
             <trans-unit id="tx_contagged_terms.reference"><source>Source</source></trans-unit>
-            <trans-unit id="tx_contagged_terms.related"><source>See also</source></trans-unit>
+            <trans-unit id="tx_contagged_terms.related"><source>Other terms</source></trans-unit>
             <trans-unit id="tx_contagged_terms.term_alt"><source>Alternative terms</source></trans-unit>
             <trans-unit id="tx_contagged_terms.term_lang"><source>Language of term</source></trans-unit>
             <trans-unit id="tx_contagged_terms.term_main"><source>Term</source></trans-unit>

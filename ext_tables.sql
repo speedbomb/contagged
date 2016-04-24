@@ -36,6 +36,7 @@ CREATE TABLE tx_contagged_terms (
 	reference text NOT NULL,
 	pronunciation tinytext NOT NULL,
 	image text NOT NULL,
+	multimedia text NOT NULL,
 	related int(11) DEFAULT '0' NOT NULL,
 	link varchar(511) DEFAULT '' NOT NULL,
 	exclude tinyint(3) DEFAULT '0' NOT NULL,
@@ -49,13 +50,15 @@ CREATE TABLE tx_contagged_terms (
 # Table structure for table 'tx_contagged_related_mm'
 #
 CREATE TABLE tx_contagged_related_mm (
-	uid_local int(11) unsigned DEFAULT '0' NOT NULL,
-	uid_foreign int(11) unsigned DEFAULT '0' NOT NULL,
-	sorting int(11) unsigned DEFAULT '0' NOT NULL,
-	tablenames tinytext NOT NULL,
+  uid_local int(11) DEFAULT '0' NOT NULL,
+  uid_foreign int(11) DEFAULT '0' NOT NULL,
+  tablenames varchar(255) DEFAULT '' NOT NULL,
+  fieldname varchar(255) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  sorting_foreign int(11) DEFAULT '0' NOT NULL,
 
-	KEY uid_local (uid_local),
-	KEY uid_foreign (uid_foreign)
+  KEY uid_local_foreign (uid_local,uid_foreign),
+  KEY uid_foreign_tablefield (uid_foreign,tablenames(40),fieldname(3),sorting_foreign)
 );
 
 #

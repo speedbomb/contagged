@@ -5,18 +5,13 @@
 
         <div class="contagged-detail">
             <h1>{term.termMain}</h1>
+
             <p class="short"><em>{term.short}</em></p>
-            <div class="description"><f:format.html>{term.description}</f:format.html></div>
-            <f:if condition="{references}">
-            <div class="reference">
-                <f:translate key="tx_contagged_terms.reference" />:
-                <ul>
-                <f:for each="{references}" as="reference">
-                    <li><f:format.html>{reference}</f:format.html></li>
-                </f:for>
-                </ul>
-            </div>
-            </f:if>
+
+            <f:if condition="{term.pronunciation}"><div class="pronunciation"><span class="label"><f:translate key="tx_contagged_terms.pronunciation"/>:</span> {term.pronunciation}</div></f:if>
+
+            <f:if condition="{term.description}"><div class="description"><f:format.html>{term.description}</f:format.html></div></f:if>
+
             <f:if condition="{term.image}">
                 <div class="images">
                     <f:for each="{term.image}" as="image">
@@ -26,6 +21,29 @@
                     </f:for>
                 </div>
             </f:if>
+
+            <f:if condition="{references}">
+            <div class="reference">
+                <f:translate key="tx_contagged_terms.reference" />:
+                <dl>
+                <f:for each="{references}" as="reference">
+                    <dt><f:format.html>{reference}</f:format.html></dt>
+                </f:for>
+                </dl>
+            </div>
+            </f:if>
+
+            <f:if condition="{term.link}"><div class="link"><span class="label"><f:translate key="tpl.see_also"/></span> <f:link.typolink parameter="{term.link}"/></div></f:if>
+
+            <f:if condition="{term.related}">
+                <div class="related">
+                    <f:translate key="tx_contagged_terms.related" />:
+                    <f:for each="{term.related}" as="related" iteration="i">
+                        {f:if(condition:'{i.isFirst}',then:'',else:', ')}<f:link.action pageUid="{settings.detailPage}" action="detail" arguments="{term: related}">{related.termMain}</f:link.action>
+                    </f:for>
+                </div>
+            </f:if>
+
         </div>
 
     </f:section>

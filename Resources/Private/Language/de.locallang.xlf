@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <xliff version="1.0">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-04-13T22:18:05Z" product-name="contagged">
+    <file source-language="en" datatype="plaintext" original="messages" date="2016-04-13T22:18:05Z" product-name="contagged">
         <header/>
         <body>
             <trans-unit id="contagged.wizard_description" approved="yes"><source>Lists the glossary terms or shows their details.</source><target state="translated">Listet die Begriffe auf oder zeigt deren Detailinformation.</target></trans-unit>
@@ -12,6 +12,8 @@
             <trans-unit id="plugin.glossary.controllerAction.0" approved="yes"><source>List of terms</source><target state="translated">Liste der Begriffe</target></trans-unit>
             <trans-unit id="plugin.glossary.controllerAction.1" approved="yes"><source>Term detail</source><target state="translated">Begriffsdetailansicht</target></trans-unit>
             <trans-unit id="tab.details" approved="yes"><source>Details</source><target state="translated">Details</target></trans-unit>
+            <trans-unit id="tab.media" approved="yes"><source>Media</source><target state="translated">Medien</target></trans-unit>
+            <trans-unit id="tpl.see_also" approved="yes"><source>See also:</source><target state="translated">Siehe auch:</target></trans-unit>
             <trans-unit id="tx_contagged_dont_parse" approved="yes"><source>Don't parse text with Contagged</source><target state="translated">Text nicht mit Contagged parsen</target></trans-unit>
             <trans-unit id="tx_contagged_terms" approved="yes"><source>Terms</source><target state="translated">Begriffe</target></trans-unit>
             <trans-unit id="tx_contagged_terms.desc_long" approved="yes"><source>Long Description</source><target state="translated">Beschreibung</target></trans-unit>
@@ -25,7 +27,7 @@
             <trans-unit id="tx_contagged_terms.plugin" approved="yes"><source>Contagged (glossary)</source><target state="translated">Contagged (Glossar)</target></trans-unit>
             <trans-unit id="tx_contagged_terms.pronunciation" approved="yes"><source>Pronunciation (IPA)</source><target state="translated">Aussprache (IPA)</target></trans-unit>
             <trans-unit id="tx_contagged_terms.reference" approved="yes"><source>Source</source><target state="translated">Quellenangabe</target></trans-unit>
-            <trans-unit id="tx_contagged_terms.related" approved="yes"><source>See also</source><target state="translated">Siehe auch</target></trans-unit>
+            <trans-unit id="tx_contagged_terms.related" approved="yes"><source>Other terms</source><target state="translated">Andere Begriffe</target></trans-unit>
             <trans-unit id="tx_contagged_terms.term_alt" approved="yes"><source>Alternative terms</source><target state="translated">Alternativbegriffe</target></trans-unit>
             <trans-unit id="tx_contagged_terms.term_lang" approved="yes"><source>Language of term</source><target state="translated">Sprache des Begriffs</target></trans-unit>
             <trans-unit id="tx_contagged_terms.term_main" approved="yes"><source>Term</source><target state="translated">Begriff</target></trans-unit>

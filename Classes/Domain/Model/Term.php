@@ -1,29 +1,31 @@
 <?php
 namespace Speedbomb\Contagged\Domain\Model;
 
-    /***************************************************************
-     *  Copyright notice
-     *
-     *  (c) 2016 Marco Schrepfer <typo3@speedbomb.de>
-     *  All rights reserved
-     *
-     *  This script is part of the TYPO3 project. The TYPO3 project is
-     *  free software; you can redistribute it and/or modify
-     *  it under the terms of the GNU General Public License as published by
-     *  the Free Software Foundation; either version 2 of the License, or
-     *  (at your option) any later version.
-     *
-     *  The GNU General Public License can be found at
-     *  http://www.gnu.org/copyleft/gpl.html.
-     *
-     *  This script is distributed in the hope that it will be useful,
-     *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-     *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     *  GNU General Public License for more details.
-     *
-     *  This copyright notice MUST APPEAR in all copies of the script!
-     ***************************************************************/
+/***************************************************************
+ *  Copyright notice
+ *
+ *  (c) 2016 Marco Schrepfer <typo3@speedbomb.de>
+ *  All rights reserved
+ *
+ *  This script is part of the TYPO3 project. The TYPO3 project is
+ *  free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  The GNU General Public License can be found at
+ *  http://www.gnu.org/copyleft/gpl.html.
+ *
+ *  This script is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  This copyright notice MUST APPEAR in all copies of the script!
+ ***************************************************************/
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * This class represents a term.
@@ -55,11 +57,26 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $link;
 
     /**
+     * Pronunciation
+     *
+     * @var string
+     */
+    protected $pronunciation;
+
+    /**
      * Reference
      *
      * @var string
      */
     protected $reference;
+
+    /**
+     * Related terms
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Speedbomb\Contagged\Domain\Model\Term>
+     * @lazy
+     */
+    protected $related;
 
     /**
      * Short description, i.e. for tool tips.
@@ -107,6 +124,22 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     protected $termType;
 
     /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->initializeObjectStorages();
+    }
+
+    /**
+     * Adds a term
+     *
+     * @param \Speedbomb\Contagged\Domain\Model\Term $term Term that will be added
+     */
+    public function addRelated(Term $term) {
+        $this->related->attach($term);
+    }
+
+    /**
      * @return string
      */
     public function getDescription() {
@@ -128,6 +161,13 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     }
 
     /**
+     * @return string
+     */
+    public function getPronunciation() {
+        return $this->pronunciation;
+    }
+
+    /**
      * @param bool $as_list Return field value as single items (separated by line break)
      * @return string|array
      */
@@ -140,9 +180,18 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
                     $references[$rk] = '<a href="' . $matches[0] . '" target="_blank">' . $matches[2] . '</a>';
                 }
             }
+
             return $references;
         }
+
         return $this->reference;
+    }
+
+    /**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Speedbomb\Contagged\Domain\Model\Term>
+     */
+    public function getRelated() {
+        return $this->related;
     }
 
     /**
@@ -188,6 +237,22 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     }
 
     /**
+     * Initialize object storages
+     */
+    public function initializeObjectStorages() {
+        $this->related = new ObjectStorage();
+    }
+
+    /**
+     * Removes a term
+     *
+     * @param \Speedbomb\Contagged\Domain\Model\Term $term Term that will be removed
+     */
+    public function removeRelated(Term $term) {
+        $this->related->detach($term);
+    }
+
+    /**
      * @param string $description
      */
     public function setDescription($description) {
@@ -209,10 +274,24 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     }
 
     /**
+     * @param string $pronunciation
+     */
+    public function setPronunciation($pronunciation) {
+        $this->pronunciation = $pronunciation;
+    }
+
+    /**
      * @param string $reference
      */
     public function setReference($reference) {
         $this->reference = $reference;
+    }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $related
+     */
+    public function setRelated($related) {
+        $this->related = $related;
     }
 
     /**
