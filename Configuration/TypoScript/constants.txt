@@ -15,6 +15,8 @@ plugin.tx_contagged {
 	}
 
 	settings {
+        # cat=contagged (base settings)//10; type=boolean; label=Parser disabled?
+        disableParser = 0
         # cat=contagged (base settings)//20; type=string; label=Root Pages to be included: A comma separated list of root pages of branches to be parsed. This could be overwritten by the type configuration.
         includeRootPages =
         # cat=contagged (base settings)//30; type=string; label=Root Pages to be excluded: A comma separated list of root pages of branches to be excluded from parsing. Overwrites the settings of "includeRootPages".
@@ -34,10 +36,12 @@ plugin.tx_contagged {
         excludeTags = h1,h2,h3,h4,h5,h6,a,dfn,abbr,acronym
         # cat=contagged (parser)//35; type=boolean; label=Exclude used tags: Auto-exclude tags used by the contagged type definitions (like <dfn> or <abbr>).
         autoExcludeTags = 0
-        # cat=contagged (parser)//48; type=int; label=Max. Recurrences: The maximum number of terms to be tagged in a cObject.
+        # cat=contagged (parser)//40; type=int; label=Max. Recurrences: The maximum number of terms to be tagged in a cObject.
         maxRecurrences = 99999
-        # cat=contagged (parser)//49; type=int; label=Max. Recurrences per Page: The maximum number of terms to be tagged on a page.
+        # cat=contagged (parser)//41; type=int; label=Max. Recurrences per Page: The maximum number of terms to be tagged on a page.
         maxRecurrencesPerPage = 99999
+        # cat=contagged (parser)//45; type=int; label=Max. replacements per term per page: The maximum number of replacements of a term on a page. E.g. if this value is 1, the 2nd occurence of a term won't be replaced.
+        maxReplacementPerPage = 1
         # cat=contagged (parser)/enable/50; type=boolean; label=Check for joined words: Take pre- and/or post-matches of joined words (with dash) into account (see documentation for examples).
         checkPreAndPostMatches = 1
         # cat=contagged (parser)/enable/52; type=boolean; label=Respect case: Respect the case of the first letter. Contagged tries to determine the case of the first letter and sets the replacement to this case if enabled.

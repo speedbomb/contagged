@@ -76,44 +76,55 @@ class ParserService implements SingletonInterface {
 	 *  - contentObjectRenderer for generating links etc.
 	 *  - termRepository to get the Terms
 	 *
-	 * @return ParserService
 	 */
 	public function __construct() {
 		// Make instance of Object Manager
 		/** @var ObjectManager $objectManager */
 		$objectManager = GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Object\ObjectManager');
+
 		// Get Configuration Manager
 		/** @var ConfigurationManager $configurationManager */
 		$configurationManager = $objectManager->get('TYPO3\CMS\Extbase\Configuration\ConfigurationManager');
+
 		// Inject Content Object Renderer
 		$this->cObj = $objectManager->get('TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer');
+
 		// Get Query Settings
 		/** @var QuerySettingsInterface $querySettings */
 		$querySettings = $objectManager->get('TYPO3\CMS\Extbase\Persistence\Generic\QuerySettingsInterface');
+
 		// Get termRepository
 		/** @var TermRepository $termRepository */
 		$termRepository = $objectManager->get('Speedbomb\Contagged\Domain\Repository\TermRepository');
-		// Get Typoscript Configuration
+
+		// Get Typoscript Configuration and reduce TS config to plugin
 		$this->tsConfig = $configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
-		// Reduce TS config to plugin
 		$this->tsConfig = $this->tsConfig['plugin.']['tx_contagged.'];
 
-		if (NULL !== $this->tsConfig && 0 < count($this->tsConfig)) {
+		if($this->tsConfig !== null && count($this->tsConfig) > 0) {
 			// Save extension settings without ts dots
 			$this->settings = GeneralUtility::removeDotsFromTS($this->tsConfig['settings.']);
+
 			// Set StoragePid in the query settings object
 			$querySettings->setStoragePageIds(GeneralUtility::trimExplode(',', $this->tsConfig['persistence.']['storagePid']));
+
 			// Set current language uid
 			$querySettings->setLanguageUid($GLOBALS['TSFE']->sys_language_uid);
+
 			// Assign query settings object to repository
 			$termRepository->setDefaultQuerySettings($querySettings);
-			//Find all terms
-			$terms = $terms = $termRepository->findByTermMainLength();
+
+			// Find all terms
+			//$terms = $termRepository->findByTermMainLength();
+			$terms = $termRepository->findAll();
+            echo count($terms) . ' terms<br>';
+
 			//Sort terms with an individual counter for max replacement per page
 			/** @var Term $term */
-			foreach ($terms as $term) {
-				$this->terms[] = array('term' => $term, 'replacements' => (int) $this->settings['maxReplacementPerPage'],);
+			foreach($terms as $term) {
+				$this->terms[] = array('term' => $term, 'replacements' => (int) $this->settings['maxReplacementPerPage']);
 			}
+            unset($terms, $term);
 		}
 	}
 
@@ -123,6 +134,16 @@ class ParserService implements SingletonInterface {
 	 * @return void
 	 */
 	public function pageParser() {
+
+        echo "pageParser!<br>";
+
+        // Abort parser if no settings available or parser is disabled
+        if(!is_array($this->settings) || count($this->settings) == 0 || $this->settings['disableParser'] == true) {
+            return;
+        }
+
+        debug($this->settings);
+
 		// extract Pids which should be parsed
 		$parsingPids = GeneralUtility::trimExplode(',', $this->settings['parsingPids']);
 		// extract Pids which should NOT be parsed
@@ -136,8 +157,6 @@ class ParserService implements SingletonInterface {
 
 		// Abort parser...
 		if (
-			// Parser disabled
-			TRUE === (boolean) $this->settings['disableParser'] ||
 			// Pagetype not 0
 			0 !== $GLOBALS['TSFE']->type ||
 			// current page is the glossary detailpage
