@@ -341,34 +341,7 @@ class ParserUtility {
         );
     }
 
-    /**
-     * Some content tagged by configured tags could be prevented from beeing parsed.
-     * This function collects all the tags which should be considered.
-     *
-     * @return    string        Comma separated list of tags
-     */
-    function getTagsToOmitt() {
-        $tagArray = array();
 
-        // if there are tags to exclude: add them to the list
-        if ($this->conf['excludeTags']) {
-            $tagArray = GeneralUtility::trimExplode(',', $this->conf['excludeTags'], 1);
-        }
-
-        // if configured: add tags used by the term definitions
-        if ($this->conf['autoExcludeTags'] > 0) {
-            ;
-            foreach ($this->conf['types.'] as $key => $type) {
-                if (!empty($type['tag']) && !in_array($type['tag'], $tagArray)) {
-                    $tagArray[] = $type['tag'];
-                }
-            }
-        }
-
-        $tagList = implode(',', $tagArray);
-
-        return $tagList;
-    }
 
     /**
      *
@@ -548,6 +521,7 @@ class ParserUtility {
      * @return    boolean    True if the page should be skipped
      */
     function isContentToSkip() {
+        /* kopiert nach ParserService isPageToSkip()
         $result = true; // true, if the page should be skipped
         $currentPageUid = $GLOBALS['TSFE']->id;
 
@@ -586,6 +560,7 @@ class ParserUtility {
         }
 
         return $result;
+        */
     }
 
     /**
