@@ -47,6 +47,7 @@ class ParserService implements SingletonInterface {
 
     /**
      * tags to be always ignored by parsing
+     * @var array
      */
     public static $alwaysIgnoreParentTags = array(
         'a',
@@ -59,17 +60,26 @@ class ParserService implements SingletonInterface {
     protected $cObj;
 
     /**
-     * @var array $settings
+     * Settings
+     * @var array
      */
     protected $settings = array();
 
     /**
-     * @var array $terms
+     * Basic collection of terms (db records)
+     * @var \Speedbomb\Contagged\Domain\Model\Term[]
      */
     protected $terms = array();
 
     /**
-     * @var array $tsConfig
+     * The sorted term list
+     * @var array
+     */
+    protected $termlist = array();
+
+    /**
+     * The TS config
+     * @var array
      */
     protected $tsConfig = array();
 
@@ -206,15 +216,15 @@ class ParserService implements SingletonInterface {
      *
      * @param \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController[] $pobjs ?
      * @param \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController $controller Controller
-     * @return string
+     * @return void
      */
-    public function pageParser($pobjs, $controller) {
+    public function pageParser($pobjs, &$controller) {
 
         echo "pageParser!<br>";
 
         // Abort parser if no settings available or parser is disabled
         if(!is_array($this->settings) || count($this->settings) == 0 || $this->settings['disableParser'] == true) {
-            return '';
+            return;
         }
 
         #debug($this->settings);
@@ -247,13 +257,14 @@ class ParserService implements SingletonInterface {
                 )
             )
         ) {
-            return '';
+            return;
         }
 
         $content = $controller->content;
 
         // Tags which are not allowed as direct parent for a parsingTag
         $forbiddenParentTags = array_filter(GeneralUtility::trimExplode(',', $this->settings['forbiddenParentTags']));
+
         // Add "a" if unknowingly deleted to prevent errors
         if(false === in_array(self::$alwaysIgnoreParentTags, $forbiddenParentTags, true)) {
             $forbiddenParentTags = array_unique(
@@ -285,7 +296,7 @@ class ParserService implements SingletonInterface {
         }
         */
 
-        return $parsedContent;
+        $controller->content = $parsedContent;
 
     }
 
@@ -402,5 +413,33 @@ class ParserService implements SingletonInterface {
         }
 
         return $text;
+    }
+
+    /**
+     * Expand the contents of $this->terms, sort and save to $this->termlist.
+     */
+    protected function setTermlist($term_records) {
+        $this->termlist = array();
+        foreach($this->terms as $term) {
+            $excludeTerms = explode(',', $this->conf['excludeTerms']);
+            $sortedTerms = array();
+            foreach ($this->termsArray as $termKey => $termArray) {
+                if ($this->conf['autoExcludeTerms'] == 1 && in_array($termArray['term_main'], $excludeTerms)) {
+                    continue;
+                }
+                $sortedTerms[] = array('term' => $termArray['term_main'], 'key' => $termKey);
+                if (is_array($termArray['term_alt'])) {
+                    foreach ($termArray['term_alt'] as $term) {
+                        if ($this->conf['autoExcludeTerms'] == 1 && in_array($term, $excludeTerms)) {
+                            continue;
+                        }
+                        $sortedTerms[] = array('term' => $term, 'key' => $termKey);
+                    }
+                }
+            }
+
+            // sort the array descending by length of the value, so the longest term will match
+            usort($sortedTerms, array($this, 'sortTermsByDescendingLength'));
+        }
     }
 }

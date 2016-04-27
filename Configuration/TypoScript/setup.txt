@@ -38,35 +38,36 @@ plugin.tx_contagged {
 
     settings {
 		disableParser = {$plugin.tx_contagged.settings.disableParser}
-        linkToListPage = {$plugin.tx_contagged.settings.linkToListPage}
-        listPage = {$plugin.tx_contagged.settings.listPage}
+		listPage = {$plugin.tx_contagged.settings.listPage}
 		detailPage = {$plugin.tx_contagged.settings.detailPage}
-        includeRootPages = {$plugin.tx_contagged.settings.includeRootPages}
-        excludeRootPages = {$plugin.tx_contagged.settings.excludeRootPages}
-        includePages = {$plugin.tx_contagged.settings.includePages}
-        excludePages = {$plugin.tx_contagged.settings.excludePages}
-        excludeTags = {$plugin.tx_contagged.settings.excludeTags}
-        autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
-        fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
-        checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
-        respectCase = {$plugin.tx_contagged.settings.respectCase}
-        addTitleAttribute = {$plugin.tx_contagged.settings.addTitleAttribute}
-        addLangAttribute = {$plugin.tx_contagged.settings.addLangAttribute}
-        addCssClassAttribute = {$plugin.tx_contagged.settings.addCssClassAttribute}
-        replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
-        maxRecurrences = {$plugin.tx_contagged.settings.maxRecurrences}
-        maxRecurrencesPerPage = {$plugin.tx_contagged.settings.maxRecurrencesPerPage}
+
+		addBackLink = {$plugin.tx_contagged.settings.addBackLink}
+		addBackLinkDescription = {$plugin.tx_contagged.settings.addBackLinkDescription}
+		addCssClassAttribute = {$plugin.tx_contagged.settings.addCssClassAttribute}
+		addLangAttribute = {$plugin.tx_contagged.settings.addLangAttribute}
+		addTitleAttribute = {$plugin.tx_contagged.settings.addTitleAttribute}
+		autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
+		autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
+		checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
+		excludePages = {$plugin.tx_contagged.settings.excludePages}
+		excludeRootPages = {$plugin.tx_contagged.settings.excludeRootPages}
+		excludeTags = {$plugin.tx_contagged.settings.excludeTags}
+		fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
+		fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
+		fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}
+		includePages = {$plugin.tx_contagged.settings.includePages}
+		includeRootPages = {$plugin.tx_contagged.settings.includeRootPages}
+		labelWrap1 = {$plugin.tx_contagged.settings.labelWrap1}
+		labelWrap2 = {$plugin.tx_contagged.settings.labelWrap2}
+		linkToListPage = {$plugin.tx_contagged.settings.linkToListPage}
+		maxRecurrences = {$plugin.tx_contagged.settings.maxRecurrences}
+		maxRecurrencesPerPage = {$plugin.tx_contagged.settings.maxRecurrencesPerPage}
 		maxReplacementPerPage = {$plugin.tx_contagged.settings.maxReplacementPerPage}
-        updateKeywords = {$plugin.tx_contagged.settings.updateKeywords}
-        labelWrap1 = {$plugin.tx_contagged.settings.labelWrap1}
-        labelWrap2 = {$plugin.tx_contagged.settings.labelWrap2}
-        modifier = {$plugin.tx_contagged.settings.modifier}
-        sortField = {$plugin.tx_contagged.settings.sortField}
-        fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
-        fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}
-        autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
-        addBackLink = {$plugin.tx_contagged.settings.addBackLink}
-        addBackLinkDescription = {$plugin.tx_contagged.settings.addBackLinkDescription}
+		modifier = {$plugin.tx_contagged.settings.modifier}
+		replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
+		respectCase = {$plugin.tx_contagged.settings.respectCase}
+		sortField = {$plugin.tx_contagged.settings.sortField}
+		updateKeywords = {$plugin.tx_contagged.settings.updateKeywords}
     }
 
 	images {
@@ -197,16 +198,13 @@ plugin.tx_contagged {
 				term_main.field = term_main
 				term_alt.field = term_alt
 				term_type.field = term_type
-				term_replace.field = term_replace
 				term_lang.field = term_lang
+				term_replace.field = term_replace
 				desc_short.field = desc_short
 				desc_long.field = desc_long
 				reference.field = reference
 				pronunciation.field = pronunciation
 				image.field = image
-				imagecaption.field = imagecaption
-				imagealt.field = imagealt
-				imagetitle.field = imagetitle
 				multimedia.field = multimedia
 				related.field = related
 				link.field = link
