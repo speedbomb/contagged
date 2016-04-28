@@ -27,7 +27,6 @@ namespace Speedbomb\Contagged\Domain\Repository;
 use Speedbomb\Contagged\Domain\Model\Term;
 
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -44,6 +43,20 @@ class TermRepository extends Repository {
 	protected $defaultOrderings = array(
 		'termMain' => QueryInterface::ORDER_ASCENDING,
 	);
+
+    /**
+     * Returns all objects of this repository.
+     *
+     * @return \Speedbomb\Contagged\Domain\Model\Term[]
+     */
+    public function findTerms() {
+        $records = array();
+        $result = $this->findAll();
+        if($result->count() > 0) {
+            $records = $result->toArray();
+        }
+        return $records;
+    }
 
 	/**
 	 * find all terms sorted by name length

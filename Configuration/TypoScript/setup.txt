@@ -1,19 +1,4 @@
-# include class tx_contagged as library
-#includeLibs.tx_contagged = EXT:contagged/class.tx_contagged.php
-
-# invoke the parser
-/*
-lib.stdheader.stdWrap.postUserFunc = tx_contagged->main
-tt_content {
-	text.20.postUserFunc = tx_contagged->main
-	bullets.20.postUserFunc = tx_contagged->main
-	table.20.stdWrap.postUserFunc = tx_contagged->main
-	uploads.20.itemRendering.20.2.postUserFunc = tx_contagged->main
-	image.20.caption.1.postUserFunc = tx_contagged->main
-	html.postUserFunc = tx_contagged->main
-}
-*/
-
+// glossary extension 'contagged'
 plugin.tx_contagged {
     view {
         templateRootPaths {
@@ -41,33 +26,33 @@ plugin.tx_contagged {
 		listPage = {$plugin.tx_contagged.settings.listPage}
 		detailPage = {$plugin.tx_contagged.settings.detailPage}
 
-		addBackLink = {$plugin.tx_contagged.settings.addBackLink}
-		addBackLinkDescription = {$plugin.tx_contagged.settings.addBackLinkDescription}
-		addCssClassAttribute = {$plugin.tx_contagged.settings.addCssClassAttribute}
-		addLangAttribute = {$plugin.tx_contagged.settings.addLangAttribute}
-		addTitleAttribute = {$plugin.tx_contagged.settings.addTitleAttribute}
-		autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
-		autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
-		checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
+		#addBackLink = {$plugin.tx_contagged.settings.addBackLink}
+		#addBackLinkDescription = {$plugin.tx_contagged.settings.addBackLinkDescription}
+		#addCssClassAttribute = {$plugin.tx_contagged.settings.addCssClassAttribute}
+		#addLangAttribute = {$plugin.tx_contagged.settings.addLangAttribute}
+		#addTitleAttribute = {$plugin.tx_contagged.settings.addTitleAttribute}
+		#autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
+		#autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
+		#checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
 		excludePages = {$plugin.tx_contagged.settings.excludePages}
 		excludeRootPages = {$plugin.tx_contagged.settings.excludeRootPages}
-		excludeTags = {$plugin.tx_contagged.settings.excludeTags}
-		fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
-		fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
-		fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}
+		#excludeTags = {$plugin.tx_contagged.settings.excludeTags}
+		#fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
+		#fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
+		#fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}
 		includePages = {$plugin.tx_contagged.settings.includePages}
 		includeRootPages = {$plugin.tx_contagged.settings.includeRootPages}
-		labelWrap1 = {$plugin.tx_contagged.settings.labelWrap1}
-		labelWrap2 = {$plugin.tx_contagged.settings.labelWrap2}
-		linkToListPage = {$plugin.tx_contagged.settings.linkToListPage}
-		maxRecurrences = {$plugin.tx_contagged.settings.maxRecurrences}
-		maxRecurrencesPerPage = {$plugin.tx_contagged.settings.maxRecurrencesPerPage}
-		maxReplacementPerPage = {$plugin.tx_contagged.settings.maxReplacementPerPage}
-		modifier = {$plugin.tx_contagged.settings.modifier}
-		replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
-		respectCase = {$plugin.tx_contagged.settings.respectCase}
-		sortField = {$plugin.tx_contagged.settings.sortField}
-		updateKeywords = {$plugin.tx_contagged.settings.updateKeywords}
+		#labelWrap1 = {$plugin.tx_contagged.settings.labelWrap1}
+		#labelWrap2 = {$plugin.tx_contagged.settings.labelWrap2}
+		#linkToListPage = {$plugin.tx_contagged.settings.linkToListPage}
+		#maxRecurrences = {$plugin.tx_contagged.settings.maxRecurrences}
+		#maxRecurrencesPerPage = {$plugin.tx_contagged.settings.maxRecurrencesPerPage}
+		#maxReplacementPerPage = {$plugin.tx_contagged.settings.maxReplacementPerPage}
+		#modifier = {$plugin.tx_contagged.settings.modifier}
+		#replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
+		#respectCase = {$plugin.tx_contagged.settings.respectCase}
+		#sortField = {$plugin.tx_contagged.settings.sortField}
+		#updateKeywords = {$plugin.tx_contagged.settings.updateKeywords}
     }
 
 	images {
@@ -78,17 +63,6 @@ plugin.tx_contagged {
 			file.maxW = {$contagged.singleMaxW}
 			file.maxH = {$contagged.singleMaxH}
 			stdWrap.wrap = <div class="tx-contagged-singleimage">|</div>
-			imageLinkWrap = 1
-			imageLinkWrap {
-				enable = 1
-				bodyTag = <body bgColor="#ffffff">
-				wrap = <a href="javascript:close();"> | </a>
-				width = 500m
-				height = 500
-				JSwindow = 1
-				JSwindow.newWindow = 1
-				JSwindow.expand = 17,20
-			}
 		}
 	}
 
@@ -101,47 +75,6 @@ plugin.tx_contagged {
 		enable = {$contagged.enableIndex}
 		showOnlyMatchedIndexChars = {$contagged.showOnlyMatchedIndexChars}
 		autoAddIndexChars = {$contagged.autoAddIndexChars}
-	}
-
-	pagebrowser {
-		enable = {$contagged.enablePageBrowser}
-		results_at_a_time = {$contagged.results_at_a_time}
-		maxPages = {$contagged.maxPages}
-		dontLinkActivePage = {$contagged.dontLinkActivePage}
-		pagefloat = {$contagged.pagefloat}
-		showFirstLast = {$contagged.showFirstLast}
-		alwaysPrev = {$contagged.alwaysPrev}
-		showResultCount = {$contagged.showResultCount}
-		showRange = {$contagged.showRange}
-		tableParams = {$contagged.tableParams}
-		pointerName = {$contagged.pointerName}
-		enableHtmlspecialchars = {$contagged.enableHtmlspecialchars}
-		wraps {
-			browseBoxWrap = <div class="browseBoxWrap">|</div>
-			showResultsWrap = <div class="showResultsWrap">|</div>
-			browseLinksWrap = <div class="browseLinksWrap">|</div>
-			showResultsNumbersWrap = <span class="showResultsNumbersWrap">|</span>
-			disabledLinkWrap = <span class="disabledLinkWrap">|</span>
-			inactiveLinkWrap = <span class="inactiveLinkWrap">|</span>
-			activeLinkWrap = <span class="activeLinkWrap">|</span>
-		}
-	}
-
-	searchbox {
-		enable = {$contagged.enableSearchBox}
-		fieldsToSearch = {$contagged.fieldsToSearch}
-	}
-
-	multimedia {
-		# see cObj MULTIMEDIA for reference
-		file.wrap = uploads/media/
-		params (
-			width = 100
-			height = 16
-			autostart = false
-			controller = true
-			loop = false
-		)
 	}
 
 	types {
@@ -184,32 +117,5 @@ plugin.tx_contagged {
 			tag = abbr
 		}
 
-	}
-
-	dataSources {
-		default {
-			sourceName = tx_contagged_terms
-			hasSysLanguageUid = 1
-			storagePids =
-			fieldsToEdit = term_main,term_alt,term_type,term_lang,term_replace,desc_short,desc_long,link,exclude
-			mapping {
-				uid.field = uid
-				pid.field = pid
-				term_main.field = term_main
-				term_alt.field = term_alt
-				term_type.field = term_type
-				term_lang.field = term_lang
-				term_replace.field = term_replace
-				desc_short.field = desc_short
-				desc_long.field = desc_long
-				reference.field = reference
-				pronunciation.field = pronunciation
-				image.field = image
-				multimedia.field = multimedia
-				related.field = related
-				link.field = link
-				exclude.field = exclude
-			}
-		}
 	}
 }
