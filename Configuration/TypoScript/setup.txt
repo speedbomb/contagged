@@ -31,12 +31,12 @@ plugin.tx_contagged {
 		#addCssClassAttribute = {$plugin.tx_contagged.settings.addCssClassAttribute}
 		#addLangAttribute = {$plugin.tx_contagged.settings.addLangAttribute}
 		#addTitleAttribute = {$plugin.tx_contagged.settings.addTitleAttribute}
-		#autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
-		#autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
+		autoExcludeTags = {$plugin.tx_contagged.settings.autoExcludeTags}
+		autoExcludeTerms = {$plugin.tx_contagged.settings.autoExcludeTerms}
 		#checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
 		excludePages = {$plugin.tx_contagged.settings.excludePages}
 		excludeRootPages = {$plugin.tx_contagged.settings.excludeRootPages}
-		#excludeTags = {$plugin.tx_contagged.settings.excludeTags}
+		excludeTags = {$plugin.tx_contagged.settings.excludeTags}
 		#fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
 		#fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
 		#fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}
@@ -49,10 +49,12 @@ plugin.tx_contagged {
 		#maxRecurrencesPerPage = {$plugin.tx_contagged.settings.maxRecurrencesPerPage}
 		#maxReplacementPerPage = {$plugin.tx_contagged.settings.maxReplacementPerPage}
 		#modifier = {$plugin.tx_contagged.settings.modifier}
-		#replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
+        parseSingleView = {$plugin.tx_contagged.settings.parseSingleView}
+        #replaceTerm = {$plugin.tx_contagged.settings.replaceTerm}
 		#respectCase = {$plugin.tx_contagged.settings.respectCase}
 		#sortField = {$plugin.tx_contagged.settings.sortField}
 		#updateKeywords = {$plugin.tx_contagged.settings.updateKeywords}
+        useSearchTags = {$plugin.tx_contagged.settings.useSearchTags}
     }
 
 	images {

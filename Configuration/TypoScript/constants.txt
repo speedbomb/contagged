@@ -35,7 +35,7 @@ plugin.tx_contagged {
         # cat=contagged (parser)//30; type=string; label=Tags to be excluded: A comma separated list of tags to be excluded from parsing.
         excludeTags = h1,h2,h3,h4,h5,h6,a,dfn,abbr,acronym
         # cat=contagged (parser)//35; type=boolean; label=Exclude used tags: Auto-exclude tags used by the contagged type definitions (like <dfn> or <abbr>).
-        autoExcludeTags = 0
+        autoExcludeTags = 1
         # cat=contagged (parser)//40; type=int; label=Max. Recurrences: The maximum number of terms to be tagged in a cObject.
         maxRecurrences = 99999
         # cat=contagged (parser)//41; type=int; label=Max. Recurrences per Page: The maximum number of terms to be tagged on a page.
@@ -58,6 +58,8 @@ plugin.tx_contagged {
         updateKeywords = 1
         # cat=contagged (parser)//90; type=string; label=RegEx modifier: RegEx modifier of the main RegEx. You have to add "u" if you have a site with UTF-8 encoding.
         modifier = Uis
+        # cat=contagged (parser)/enable/95; type=boolean; label=Use indexed_search tags: Use tags used for indexed_search (TYPO3_SEARCH_begin|end) and parse only content within those tags.
+        useSearchTags = 1
 
         # cat=contagged (list)/dims/10; type=int; label=Image max width: Maximum width of an image in single view.
         singleMaxW = 200
@@ -73,10 +75,8 @@ plugin.tx_contagged {
         fieldsToSearch = term_main,term_alt,term_replace,desc_short,desc_long,imagecaption
         # cat=contagged (list)//34; type=string; label=Sort Field: The front-end lists will be sorted by this field.
         sortField = term
-        # cat=contagged (list)//38; type=string; label=Fields to be parsed: Fields to be parsed by contagged again before they are outputted in the list view.
+        # cat=contagged (list)//35; type=string; label=Fields to be parsed: Fields to be parsed by contagged again before they are outputted in the list view.
         fieldsToParse =
-        # cat=contagged (list)//39; type=boolean; label=Auto-exclude Terms: Set this to avoid parsed terms linking to themselves in a single view.
-        autoExcludeTerms = 1
         # cat=contagged (list)//39; type=boolean; label=Fetch related terms: If you don't use related terms, you can set this to 0 and gain a little bit of performance.
         fetchRelatedTerms = 1
         # cat=contagged (list)//40; type=string; label=Fields to Map: Fields to be mapped.
@@ -118,5 +118,12 @@ plugin.tx_contagged {
 
         # cat=contagged (list)//200; type=options[normal,character,pagination]; label=Listmode: normal, character or paginated by characters
         listmode = normal
+
+        # cat=contagged (single)/enable/10; type=boolean; label=Parse single view: If set, even the term single view is parsed.
+        parseSingleView = 1
+        # cat=contagged (single)/enable/20; type=boolean; label=Auto-exclude Terms: Set this to avoid parsed terms linking to themselves in a single view.
+        autoExcludeTerms = 1
+
+
     }
 }
