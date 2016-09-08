@@ -202,9 +202,15 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     }
 
     /**
-     * @return string
+     * Get the alternate terms
+     *
+     * @param bool $as_array If TRUE, the linebreak separated terms are returned as array
+     * @return string|array
      */
-    public function getTermAlt() {
+    public function getTermAlt($as_array = false) {
+        if($as_array == true) {
+            return GeneralUtility::trimExplode("\n", str_replace(array("\r\n", "\r"), array("\n", "\n"), $this->termAlt), true);
+        }
         return $this->termAlt;
     }
 
@@ -302,10 +308,14 @@ class Term extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
     }
 
     /**
-     * @param string $termAlt
+     * @param string|array $termAlt
      */
     public function setTermAlt($termAlt) {
-        $this->termAlt = $termAlt;
+        if(is_array($termAlt)) {
+            $this->termAlt = implode("\n", $termAlt);
+        } else {
+            $this->termAlt = $termAlt;
+        }
     }
 
     /**

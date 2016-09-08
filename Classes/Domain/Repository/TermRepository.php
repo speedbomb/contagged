@@ -45,6 +45,45 @@ class TermRepository extends Repository {
 	);
 
     /**
+     * Returns terms (and their alternate terms) as string words.
+     *
+     * @param bool $sortedByLength Should the terms be sorted by length?
+     * @return array $termWords
+     */
+	public function fetchTermWords($sortedByLength = false) {
+		$termWords = array();
+		$terms = $this->findTerms();
+
+		// get the main term and possibly the alternate terms
+		foreach($terms as $term) {
+			$termWords[] = $term->getTermMain();
+			if(count($termsAlt = $term->getTermAlt(true)) > 0) {
+				$termWords = array_merge($termWords, $termsAlt);
+			};
+			unset($termsAlt);
+		}
+
+        // should the terms be sorted by length?
+        if($sortedByLength == true) {
+            /**
+             * Sorting Callback (by string length descending)
+             *
+             * @param Term $termA
+             * @param Term $termB
+             * @return int
+             */
+            $sortingCallback = function($termA, $termB) {
+                return strlen($termB) - strlen($termA);
+            };
+
+            // Sort terms
+            usort($termWords, $sortingCallback);
+        }
+
+        return $termWords;
+	}
+
+    /**
      * Returns all objects of this repository.
      *
      * @return \Speedbomb\Contagged\Domain\Model\Term[]
@@ -64,10 +103,10 @@ class TermRepository extends Repository {
 	 * @return array
 	 */
 	public function findByTermMainLength() {
-		$terms = $this->findAll()->toArray();
+		$terms = $this->findTerms();
 
 		/**
-		 * Sorting Callback
+		 * Sorting Callback (by string length descending)
 		 *
 		 * @param Term $termA
 		 * @param Term $termB

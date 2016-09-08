@@ -36,7 +36,7 @@ plugin.tx_contagged {
 		#checkPreAndPostMatches = {$plugin.tx_contagged.settings.checkPreAndPostMatches}
 		excludePages = {$plugin.tx_contagged.settings.excludePages}
 		excludeRootPages = {$plugin.tx_contagged.settings.excludeRootPages}
-		#excludeTags = {$plugin.tx_contagged.settings.excludeTags}
+		excludeTags = {$plugin.tx_contagged.settings.excludeTags}
 		#fetchRelatedTerms = {$plugin.tx_contagged.settings.fetchRelatedTerms}
 		#fieldsToMap = {$plugin.tx_contagged.settings.fieldsToMap}
 		#fieldsToParse = {$plugin.tx_contagged.settings.fieldsToParse}

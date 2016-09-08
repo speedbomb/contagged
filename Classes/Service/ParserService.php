@@ -172,7 +172,8 @@ class ParserService implements SingletonInterface {
         // get the content
         $content = $controller->content;
         $htmlParser = GeneralUtility::makeInstance('TYPO3\CMS\Core\Html\HtmlParser');
-        $splittedContent = $htmlParser->splitIntoBlock($this->getTagsToOmitt(), $content);
+        $splittedContent = $htmlParser->splitIntoBlock($this->getTagsToOmit(), $content);
+        $sortedTerms = $this->termRepository->fetchTermWords(true);
 
         foreach ((array)$splittedContent as $intKey => $HTMLvalue) {
             if (!($intKey % 2)) {
@@ -190,6 +191,34 @@ class ParserService implements SingletonInterface {
         $parsedContent = implode('', $splittedContent);
 
         $controller->content = $parsedContent;
+    }
+
+    /**
+     * Some content tagged by configured tags could be prevented from beeing parsed.
+     * This function collects all the tags which should be considered.
+     *
+     * @return string Comma separated list of tags
+     */
+    protected function getTagsToOmit() {
+        $tagArray = array();
+
+        // if there are tags to exclude: add them to the list
+        if($this->settings['excludeTags']) {
+            $tagArray = GeneralUtility::trimExplode(',', $this->settings['excludeTags'], true);
+        }
+
+        // if configured: add tags used by the term definitions
+        /* deactivated
+        if ($this->settings['autoExcludeTags'] > 0) {
+            foreach ($this->tsConfig['types.'] as $key => $type) {
+                if (!empty($type['tag']) && !in_array($type['tag'], $tagArray)) {
+                    $tagArray[] = $type['tag'];
+                }
+            }
+        }
+        */
+
+        return implode(',', $tagArray);
     }
 
     /**
